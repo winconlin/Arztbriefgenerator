@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arztbriefgenerator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Arztbriefgenerator</h1>
+    <p>Lokal, schnell und standardisiert — ohne zusätzliche Installation.</p>
+  </header>
+
+  <main class="layout">
+    <section class="card controls">
+      <h2>1) Fall auswählen</h2>
+      <label for="scenario">Fallgruppe</label>
+      <select id="scenario"></select>
+
+      <h2>2) Eingaben</h2>
+      <form id="field-form"></form>
+
+      <div class="actions">
+        <button id="generate" type="button">Text aktualisieren</button>
+        <button id="copy-all" type="button" class="secondary">Alles kopieren</button>
+      </div>
+
+      <details>
+        <summary>Feldmatrix (aktuelle Vorlage)</summary>
+        <div id="matrix"></div>
+      </details>
+    </section>
+
+    <section class="card output">
+      <h2>Aktuelle Diagnosen</h2>
+      <textarea id="diagnosen" rows="7" readonly></textarea>
+      <button data-copy="diagnosen" class="secondary">Diagnosen kopieren</button>
+
+      <h2>Epikrise</h2>
+      <textarea id="epikrise" rows="14" readonly></textarea>
+      <button data-copy="epikrise" class="secondary">Epikrise kopieren</button>
+
+      <h2>Procedere</h2>
+      <textarea id="procedere" rows="10" readonly></textarea>
+      <button data-copy="procedere" class="secondary">Procedere kopieren</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
