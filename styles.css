@@ -1,66 +1,17 @@
-:root {
-  --bg: #f3f5f9;
-  --card: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --primary: #0f62fe;
-  --border: #d1d5db;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-}
-.topbar {
-  background: linear-gradient(135deg, #0f62fe, #4589ff);
-  color: white;
-  padding: 1.25rem 1.5rem;
-}
-.topbar h1 { margin: 0; }
-.topbar p { margin: .35rem 0 0; opacity: .95; }
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
-}
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem;
-}
-label { font-size: .9rem; color: var(--muted); display:block; margin:.6rem 0 .25rem; }
-input, select, textarea {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: .55rem .65rem;
-  font: inherit;
-  background: white;
-}
-textarea { resize: vertical; }
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .65rem;
-}
-.form-grid .full { grid-column: 1 / -1; }
-.actions { display:flex; gap:.6rem; margin-top: .9rem; }
-button {
-  border: none;
-  border-radius: 8px;
-  padding: .6rem .8rem;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-}
-button.secondary { background: #374151; }
-#matrix { font-size: .86rem; color: #374151; }
-#matrix table { width: 100%; border-collapse: collapse; }
-#matrix th, #matrix td { border: 1px solid var(--border); padding: .35rem; text-align: left; }
-@media (max-width: 950px) {
-  .layout { grid-template-columns: 1fr; }
-}
+:root { --bg:#f5f7fb; --panel:#fff; --text:#12263a; --muted:#5f6b7a; --accent:#1d66ff; --border:#d9e2ec; }
+*{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text)}
+.topbar{padding:20px 24px;background:linear-gradient(90deg,#0f4ccc,#387dff);color:#fff}
+.topbar h1{margin:0 0 6px}
+.topbar p{margin:0;opacity:.95}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px;max-width:1400px;margin:0 auto}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+label{display:block;margin:10px 0;font-size:14px}
+select,input,textarea{width:100%;margin-top:6px;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+textarea{min-height:150px;resize:vertical}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-full{grid-column:1 / -1}
+.output-head{display:flex;justify-content:space-between;align-items:center}
+button{border:1px solid var(--border);background:#fff;padding:8px 10px;border-radius:8px;cursor:pointer}
+button.primary{margin-top:10px;background:var(--accent);color:#fff;border:none;width:100%}
+@media (max-width: 980px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}}
