@@ -1,0 +1,2 @@
+# Arztbriefgenerator
+Ein rudimentärer Arztbriefgenerator
