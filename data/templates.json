@@ -1,0 +1,54 @@
+[
+  {
+    "id": "acs_pci",
+    "title": "ACS mit PCI",
+    "fields": [
+      {"key":"acs_type","label":"ACS-Typ","type":"select","options":["STEMI","NSTEMI","Instabile AP"],"default":"NSTEMI"},
+      {"key":"vessel_disease","label":"Gefäßerkrankung","type":"select","options":["1","2","3"],"default":"2"},
+      {"key":"target_vessel","label":"Zielgefäß","type":"select","options":["LAD","RCX","RCA","LM"],"default":"RCA"},
+      {"key":"stent_count","label":"Anzahl DE-Stents","type":"number","default":"1"},
+      {"key":"dapt_drug","label":"P2Y12-Hemmer","type":"select","options":["Clopidogrel","Prasugrel","Ticagrelor"],"default":"Ticagrelor"},
+      {"key":"dapt_months","label":"DAPT-Monate","type":"number","default":"12"},
+      {"key":"access_site","label":"Punktion","type":"select","options":["A. radialis rechts","A. radialis links","A. femoralis rechts","A. femoralis links"],"default":"A. radialis rechts"}
+    ],
+    "output": {
+      "diagnosen": "{{acs_type}} bei koronarer {{vessel_disease}}-Gefäßerkrankung mit hochgradiger Läsion der {{target_vessel}}. Aktuell: PCI mit {{stent_count}} DE-Stent(s).",
+      "epikrise": "Aufnahme bei akutem Koronarsyndrom. Koronarangiographisch {{verb_show}} eine {{vessel_disease}}-Gefäßerkrankung mit relevanter Läsion der {{target_vessel}}, die komplikationslos mittels PCI und {{stent_count}} DE-Stent(s) versorgt wurde. Eine duale Plättchenhemmung mit ASS und {{dapt_drug}} ist für {{dapt_months}} Monate indiziert, anschließend Monotherapie. Die punktierte {{access_site}} {{verb_present}} am Entlasstag reizlos.",
+      "procedere": "- DAPT mit ASS + {{dapt_drug}} für {{dapt_months}} Monate, danach Monotherapie\n- LDL-Ziel <55 mg/dl und konsequente Risikofaktorkontrolle"
+    }
+  },
+  {
+    "id": "device_icd_crt",
+    "title": "Device: PM / ICD / CRT-P / CRT-D / LifeVest",
+    "fields": [
+      {"key":"device_type","label":"Device-Typ","type":"select","options":["1-Kammer-PM","2-Kammer-PM","ICD","CRT-P","CRT-D","LifeVest"],"default":"CRT-D"},
+      {"key":"company","label":"Firma/Aggregat","type":"text","default":"St. Jude Medical"},
+      {"key":"sn","label":"Seriennummer","type":"text","default":"XX"},
+      {"key":"implant_date","label":"Implantationsdatum","type":"date"},
+      {"key":"control_date","label":"Kontrolldatum","type":"date"},
+      {"key":"follow_date","label":"Ambulanztermin","type":"date"}
+    ],
+    "output": {
+      "diagnosen": "Implantation eines {{device_type}}-Systems ({{company}}, SN {{sn}}) am {{implant_date_fmt}}.",
+      "epikrise": "Stationäre Aufnahme zur {{device_type}}-Versorgung. Die Implantation am {{implant_date_fmt}} verlief komplikationslos. Im Röntgen-Thorax {{verb_show}} sich eine regelrechte Sondenlage ohne Pneumothorax. Die Device-Kontrolle vom {{control_date_fmt}} {{verb_show}} eine regelrechte Funktion.",
+      "procedere": "- Wundkontrolle und Fadenzug nach 8–10 Tagen\n- Ambulante Device-Kontrolle am {{follow_date_fmt}} (Überweisung erforderlich)"
+    }
+  },
+  {
+    "id": "valve_opv",
+    "title": "Klappenvitien: TAVI / OP / M-TEER / T-TEER",
+    "fields": [
+      {"key":"path","label":"Pfad","type":"select","options":["TAVI","Operativer Klappenersatz","M-TEER","T-TEER"],"default":"TAVI"},
+      {"key":"koef","label":"KÖF (cm²)","type":"text","default":"0,8"},
+      {"key":"pmean","label":"pmean (mmHg)","type":"text","default":"40"},
+      {"key":"opv_done","label":"OPV komplett","type":"select","options":["ja","nein"],"default":"ja"},
+      {"key":"target_hospital","label":"Zielklinik","type":"text","default":"Herzzentrum München"},
+      {"key":"appointment_date","label":"Termin","type":"date"}
+    ],
+    "output": {
+      "diagnosen": "Hochgradiges Klappenvitium mit Interventionsindikation ({{path}}), KÖF {{koef}} cm², pmean {{pmean}} mmHg.",
+      "epikrise": "Aufnahme zur OP-Vorbereitung. Die Befundkonstellation {{verb_show}} eine Interventionsindikation. OPV-Module entsprechend Hausstandard für {{path}} wurden {{opv_done}} durchgeführt. Der weitere Ablauf inklusive Heart-Team/Intervention wurde besprochen.",
+      "procedere": "- Weiteres Vorgehen gemäß {{path}}-Pfad\n- Termin am {{appointment_date_fmt}} in {{target_hospital}} (Überweisung: ja/nein dokumentieren)"
+    }
+  }
+]

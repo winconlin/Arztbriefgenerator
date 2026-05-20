@@ -1,0 +1,24 @@
+{
+  "version": "1.1",
+  "global_core": [
+    {"key":"sex","label":"Geschlecht","type":"select","options":["männlich","weiblich","divers"],"required":true},
+    {"key":"age","label":"Alter","type":"number","required":true},
+    {"key":"admission_date","label":"Aufnahmedatum","type":"date","required":true},
+    {"key":"discharge_date","label":"Entlassdatum","type":"date","required":true},
+    {"key":"cv_risk_factors","label":"Kardiovaskuläre Risikofaktoren","type":"text","required":false}
+  ],
+  "module_notes": {
+    "ldl_default": "<55 mg/dl",
+    "date_format": "TT.MM.JJJJ",
+    "dapt_defaults": {
+      "elective_pci": 6,
+      "acs_pci": 12,
+      "editable": true
+    },
+    "output_rules": [
+      "Standardisierter Punktionsstellensatz: Seite + Zugang + Zustand",
+      "Einheitlicher Entlassungssatz, kontextabhängig ambulant oder Verlegung",
+      "Terminmodule immer mit Datum/Uhrzeit/Ort/Überweisung"
+    ]
+  }
+}
