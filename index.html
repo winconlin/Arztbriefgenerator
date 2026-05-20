@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arztbriefgenerator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Arztbriefgenerator</h1>
+    <p>Lokale, schnelle Erstellung standardisierter Arztbriefe.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>Eingaben</h2>
+
+      <label>Fallgruppe
+        <select id="caseGroup"></select>
+      </label>
+
+      <label>Vorlage
+        <select id="template"></select>
+      </label>
+
+      <label>Stil
+        <select id="styleMode">
+          <option value="conservative">Konsistent-konservativ</option>
+          <option value="variable">Variabel-natürlich</option>
+        </select>
+      </label>
+
+      <div id="fields" class="fields"></div>
+    </section>
+
+    <section class="panel output-panel">
+      <h2>Ausgabe</h2>
+      <div class="output-block">
+        <div class="output-head"><h3>Aktuelle Diagnosen</h3><button data-copy="diagnosen">Kopieren</button></div>
+        <textarea id="diagnosen" readonly></textarea>
+      </div>
+      <div class="output-block">
+        <div class="output-head"><h3>Epikrise</h3><button data-copy="epikrise">Kopieren</button></div>
+        <textarea id="epikrise" readonly></textarea>
+      </div>
+      <div class="output-block">
+        <div class="output-head"><h3>Procedere</h3><button data-copy="procedere">Kopieren</button></div>
+        <textarea id="procedere" readonly></textarea>
+      </div>
+      <button id="copyAll" class="primary">Alles kopieren</button>
+    </section>
+  </main>
+
+  <script src="templates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
