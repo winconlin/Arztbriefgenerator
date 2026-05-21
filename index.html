@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arztbriefgenerator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Arztbriefgenerator</h1>
+    <div class="tabs">
+      <button id="tab-generator" class="tab active">Arztbriefgenerator</button>
+      <button id="tab-editor" class="tab">Template Editor</button>
+    </div>
+  </header>
+
+  <main id="view-generator" class="layout">
+    <section class="card controls">
+      <label>Template</label>
+      <select id="scenario"></select>
+      <form id="field-form"></form>
+      <div class="actions"><button id="generate" type="button">Text aktualisieren</button><button id="copy-all" type="button" class="secondary">Alles kopieren</button></div>
+    </section>
+    <section class="card output">
+      <h3>Diagnosen</h3><textarea id="diagnosen" rows="6" readonly></textarea>
+      <h3>Epikrise</h3><textarea id="epikrise" rows="12" readonly></textarea>
+      <h3>Procedere</h3><textarea id="procedere" rows="8" readonly></textarea>
+    </section>
+  </main>
+
+  <main id="view-editor" class="hidden">
+    <section class="card">
+      <h2>Template Editor (einfach)</h2>
+      <label>Template-ID</label><input id="template-id" placeholder="z.B. acs_v2" />
+      <label>Template-Titel</label><input id="template-title" placeholder="z.B. ACS Hausstandard" />
+
+      <h3>Template-Texte</h3>
+      <label>Diagnosen</label><textarea id="tpl-diagnosen" rows="5"></textarea>
+      <label>Epikrise</label><textarea id="tpl-epikrise" rows="8"></textarea>
+      <label>Procedere</label><textarea id="tpl-procedere" rows="6"></textarea>
+
+      <h3>Variable hinzufügen</h3>
+      <div class="editor-grid">
+        <div><label>Name (Key)</label><input id="var-key" placeholder="z.B. p2y12" /></div>
+        <div><label>Anzeigename</label><input id="var-label" placeholder="z.B. P2Y12-Hemmer" /></div>
+        <div><label>Typ</label><select id="var-type"><option>text</option><option>number</option><option>select</option><option>date</option><option>boolean</option><option>multiline</option></select></div>
+        <div><label>Position im Generator</label><select id="var-position"><option value="diagnosen">Diagnosen</option><option value="epikrise">Epikrise</option><option value="procedere">Procedere</option></select></div>
+        <div><label>Sortierung (1..n)</label><input id="var-order" type="number" value="1" /></div>
+        <div><label>Default / Beispiel</label><input id="var-default" /></div>
+        <div class="full"><label>Optionen für Dropdown (Komma-getrennt)</label><input id="var-options" placeholder="Clopidogrel,Prasugrel,Ticagrelor" /></div>
+      </div>
+      <div class="actions">
+        <button id="insert-var" type="button">Variable in aktives Textfeld einfügen</button>
+        <button id="save-var" type="button">Variable speichern</button>
+        <button id="save-template" type="button">Template speichern</button>
+        <button id="export-all" type="button" class="secondary">Alle Templates exportieren</button>
+        <label class="secondary import-label">Alle Templates importieren<input id="import-all" type="file" accept="application/json" /></label>
+      </div>
+      <details><summary>Variablen-Tabelle anzeigen</summary><div id="var-table"></div></details>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
