@@ -6,17 +6,25 @@ Lokaler, statischer Arztbriefgenerator ohne zusätzliche Installation.
 
 Einfach `index.html` im Browser öffnen.
 
-## Enthaltene Vorlagen (v2, näher an den Vorlagen)
+## Enthaltene Vorlagen (v3)
 
-- ACS-PCI (inkl. Telemetrie, CK bei STEMI, AHB-Option, standardisierte Punktionsstelle)
-- Device: PM/ICD/CRT-P/CRT-D/LifeVest (inkl. Rö-Thx, Device-Kontrolle, OAK-Pause, Nachsorgetermin)
+- Elektive Koronarangiographie / PCI
+- ACS-PCI
+- Device: PM/ICD/CRT-P/CRT-D/LifeVest
 - Klappenvitien: TAVI, operativer Klappenersatz, M-TEER, T-TEER inkl. OPV-Block
 - Lungenarterienembolie inkl. optionaler Thrombektomie
+- Kardiale Dekompensation
+- TAA bei Vorhofflimmern
+- Elektrische Kardioversion
+- Pulmonalvenenisolation (EPU bei VHF)
+- Sonstige EPU (AVNRT/AVRT/WPW/CTI)
+- Hypertensive Krise
+- Bypass-OP Vorbereitung
 
 ## Hausstandards (abgebildet)
 
 - LDL-Ziel Default: `<55 mg/dl`
-- DAPT-Default in ACS-Template: 12 Monate (anpassbar)
+- DAPT-Default: elektive PCI 6 Monate (anpassbar), ACS-PCI 12 Monate
 - Einheitliches Datumsformat: `TT.MM.JJJJ`
 - Terminmodule mit Datum/Uhrzeit/Ort + Überweisungshinweis
 - Standardisierter Punktionsstellen-Satz

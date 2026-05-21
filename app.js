@@ -113,6 +113,189 @@ const scenarios = [
       };
     }
   }
+  ,
+  {
+    id: "elective_pci",
+    title: "Elektive Koronarangiographie / PCI",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "vesselDisease", label: "1/2/3-Gefäßerkrankung", type: "select", options: ["1", "2", "3"], default: "2" },
+      { key: "withBypass", label: "ACVB-Situation", type: "text", default: "keine" },
+      { key: "lesion", label: "Hochgradige Läsion", type: "text", default: "LAD-Stenose" },
+      { key: "intervention", label: "Intervention", type: "text", default: "PTCA/DES-Implantation" },
+      { key: "p2y12", label: "P2Y12", type: "select", options: ["Clopidogrel", "Prasugrel", "Ticagrelor"], default: "Clopidogrel" },
+      { key: "daptMonths", label: "DAPT Monate", type: "number", default: "6" },
+      { key: "ldl", label: "LDL-Ziel", type: "text", default: "<55 mg/dl" },
+      { key: "access", label: "Punktionsstelle", type: "text", default: "A. radialis rechts" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => ({
+      diagnosen: `Koronare ${d.vesselDisease}-Gefäßerkrankung${d.withBypass !== "keine" ? ` (mit ACVB-Situation: ${d.withBypass})` : ""} mit hochgradiger ${d.lesion}.
+- Aktuell: ${d.intervention}.`,
+      epikrise: `${d.patient} wurde zur elektiv geplanten Koronarangiographie stationär aufgenommen. Koronarangiographisch zeigte sich eine koronare ${d.vesselDisease}-Gefäßerkrankung mit hochgradiger ${d.lesion}, welche in gleicher Sitzung mittels ${d.intervention} versorgt wurde. Der postinterventionelle Verlauf gestaltete sich komplikationslos. Aufgrund der Stentimplantation empfehlen wir eine duale Plättchenhemmung mit ASS und ${d.p2y12} für ${d.daptMonths} Monate, anschließend eine lebensbegleitende Monotherapie. Die punktierte ${d.access} war am Entlasstag klinisch reizlos bei intakter DMS. Entlassung am ${d.date} in stabilem und beschwerdefreiem Zustand.`,
+      procedere: `- DAPT mit ASS und ${d.p2y12} für ${d.daptMonths} Monate, anschließend Monotherapie
+- Konsequente Einstellung kardiovaskulärer Risikofaktoren, Ziel-LDL ${d.ldl}
+- Echokardiographische Verlaufskontrollen`
+    })
+  },
+  {
+    id: "heart_failure",
+    title: "Kardiale Dekompensation",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "cause", label: "Ursache", type: "text", default: "dekompensierte Herzinsuffizienz" },
+      { key: "ntprobnp", label: "NT-pro-BNP", type: "text", default: "4500 pg/ml" },
+      { key: "diuresis", label: "Diurese-Verlauf", type: "text", default: "forcierte diuretische Therapie, Umstellung auf Torasemid" },
+      { key: "weight", label: "Mobilisiertes Gewicht", type: "text", default: "3 kg" },
+      { key: "echo", label: "Echo", type: "text", default: "mittelgradig eingeschränkte LVEF" },
+      { key: "troponin", label: "Troponin-Bewertung", type: "text", default: "dezente Troponin-Auslenkung im Rahmen der Dekompensation" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => ({
+      diagnosen: `Dekompensierte Herzinsuffizienz bei ${d.cause}.`,
+      epikrise: `${d.patient} wurde bei kardialer Dekompensation mit Dyspnoe stationär aufgenommen. Klinisch und radiologisch imponierten kardiale Stauungszeichen. Das NT-pro-BNP lag bei ${d.ntprobnp}. Unter ${d.diuresis} konnte eine deutliche Beschwerdebesserung mit Negativbilanz erzielt werden (insgesamt mobilisiert: ${d.weight}). Echokardiographisch zeigte sich ${d.echo}. Die ${d.troponin}. Entlassung am ${d.date} in stabilem Allgemeinzustand.`,
+      procedere: `- Regelmäßige Nierenretentionsparameter- und Elektrolytkontrollen unter Diuretikatherapie
+- Tägliche Gewichtskontrollen
+- Flüssigkeitszufuhr max. 1,5 l/Tag
+- Ausreizen der leitliniengerechten Herzinsuffizienztherapie`
+    })
+  },
+  {
+    id: "taa_vhf",
+    title: "TAA bei Vorhofflimmern",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "chadsvasc", label: "CHA2DS2-VASc", type: "number", default: "2" },
+      { key: "oak", label: "OAK", type: "text", default: "Apixaban" },
+      { key: "lzekg", label: "LZ-EKG", type: "text", default: "Vorhofflimmern, mittlere Frequenz 110/min, TAA-Episoden bis 160/min" },
+      { key: "strategy", label: "Strategie", type: "text", default: "Frequenzkontrolle" },
+      { key: "cardioversion", label: "Kardioversion", type: "text", default: "nach TEE durchgeführt, jedoch frühes Rezidiv" },
+      { key: "amio", label: "Amiodaron", type: "text", default: "Rhythmuskontrolle nach Aufsättigung" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => ({
+      diagnosen: `Tachyarrhythmisches Vorhofflimmern bei CHA2DS2-VASc-Score ${d.chadsvasc}.`,
+      epikrise: `${d.patient} wurde bei erstmalig diagnostiziertem tachyarrhythmischem Vorhofflimmern stationär aufgenommen. Bei einem CHA2DS2-VASc-Score von ${d.chadsvasc} wurde eine orale Antikoagulation mit ${d.oak} begonnen. Im Langzeit-EKG zeigte sich ${d.lzekg}. Im weiteren Verlauf wurde eine ${d.strategy} etabliert; ${d.cardioversion}. Zur Rhythmusstabilisierung erfolgte ${d.amio}. Entlassung am ${d.date} in gutem Allgemeinzustand.`,
+      procedere: `- Fortführung der oralen Antikoagulation mit ${d.oak}
+- Regelmäßige rhythmologische und echokardiographische Verlaufskontrollen
+- Bei Amiodaron: Verlaufskontrollen von QTc, Schilddrüsen-, Leber- und Lungenfunktion`
+    })
+  },
+  {
+    id: "cardioversion",
+    title: "Elektrische Kardioversion",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "arrhythmia", label: "Rhythmusdiagnose", type: "text", default: "persistierendes Vorhofflimmern" },
+      { key: "ehra", label: "EHRA", type: "text", default: "III" },
+      { key: "chadsvasc", label: "CHA2DS2-VASc", type: "number", default: "2" },
+      { key: "hasbled", label: "HAS-BLED", type: "number", default: "1" },
+      { key: "joule", label: "Kardioversion (Joule)", type: "text", default: "200 J biphasisch" },
+      { key: "result", label: "Ergebnis", type: "select", options: ["erfolgreich", "frustran"], default: "erfolgreich" },
+      { key: "oak", label: "OAK", type: "text", default: "Apixaban" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => {
+      const oakDuration = Number(d.chadsvasc) >= 2 ? "dauerhaft" : "für vier Wochen";
+      return {
+        diagnosen: `${d.arrhythmia}, EHRA ${d.ehra}, CHA2DS2-VASc ${d.chadsvasc}, HAS-BLED ${d.hasbled}.
+- Aktuell: ${d.result}e elektrische Kardioversion mit ${d.joule}.`,
+        epikrise: `${d.patient} stellte sich mit symptomatischem ${d.arrhythmia} stationär vor. Nach Ausschluss intracavitärer Thromben in der TEE erfolgte ${d.result === "erfolgreich" ? "komplikationslos" : "unter adäquatem Schockprotokoll"} die elektrische Kardioversion mit ${d.joule}. Im weiteren Verlauf zeigte sich ${d.result === "erfolgreich" ? "ein normfrequenter Sinusrhythmus" : "weiterhin Vorhofflimmern"}. Bei CHA2DS2-VASc ${d.chadsvasc} ist eine orale Antikoagulation ${oakDuration} indiziert. Entlassung am ${d.date} in stabilem Allgemeinzustand.`,
+        procedere: `- Fortführung OAK mit ${d.oak} ${oakDuration}
+- Rhythmologische Wiedervorstellung in der Sprechstunde`
+      };
+    }
+  },
+  {
+    id: "pvi",
+    title: "Pulmonalvenenisolation (EPU bei VHF)",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "afType", label: "VHF-Typ", type: "select", options: ["Paroxysmal", "Persistierend", "Kurz-persistierend"], default: "Persistierend" },
+      { key: "ehra", label: "EHRA", type: "text", default: "III" },
+      { key: "chadsvasc", label: "CHA2DS2-VASc", type: "number", default: "1" },
+      { key: "hasbled", label: "HAS-BLED", type: "number", default: "1" },
+      { key: "method", label: "Methode", type: "select", options: ["Kryo-Ballon", "Radiofrequenz", "Pulsed Field Ablation"], default: "Kryo-Ballon" },
+      { key: "result", label: "Ergebnis", type: "text", default: "erfolgreiche Isolation aller Pulmonalvenen" },
+      { key: "groin", label: "Leistenstatus", type: "text", default: "beidseits reizlos, DMS intakt" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => {
+      const oakDuration = Number(d.chadsvasc) >= 2 ? "dauerhaft" : "für drei Monate";
+      const ppi = d.method === "Pulsed Field Ablation" ? "" : " Ergänzend wird eine PPI-Therapie in doppelter Standarddosis für vier Wochen empfohlen.";
+      return {
+        diagnosen: `${d.afType}es Vorhofflimmern, EHRA ${d.ehra}, CHA2DS2-VASc ${d.chadsvasc}, HAS-BLED ${d.hasbled}.
+- Aktuell: EPU mit ${d.method}, ${d.result}.`,
+        epikrise: `${d.patient} wurde zur Pulmonalvenenisolation stationär aufgenommen. Nach Ausschluss intracavitärer Thromben in der TEE erfolgte komplikationslos die elektrophysiologische Untersuchung mit ${d.method} und ${d.result}. In seriellen echokardiographischen Kontrollen ergab sich postinterventionell kein Perikarderguss. Die punktierten Vv. femorales waren am Entlasstag ${d.groin}.${ppi} Entlassung am ${d.date} in gutem Allgemeinzustand.`,
+        procedere: `- Fortführung der oralen Antikoagulation ${oakDuration}
+- Wiedervorstellung in der rhythmologischen Sprechstunde (mit Einweisung)${ppi ? "\n- PPI in doppelter Standarddosis für vier Wochen" : ""}`
+      };
+    }
+  },
+  {
+    id: "epu_other",
+    title: "Sonstige EPU (AVNRT/AVRT/WPW/CTI)",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "entity", label: "Entität", type: "select", options: ["AVNRT", "AVRT/WPW", "Typisches Vorhofflattern"], default: "AVNRT" },
+      { key: "procedure", label: "Prozedur", type: "text", default: "Modulation des slow-pathway" },
+      { key: "chadsvasc", label: "CHA2DS2-VASc (bei Flattern)", type: "number", default: "1" },
+      { key: "groin", label: "Leistenstatus", type: "text", default: "reizlos, DMS intakt" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => {
+      const flutter = d.entity === "Typisches Vorhofflattern";
+      const oakText = flutter ? (Number(d.chadsvasc) >= 2 ? "dauerhaft" : "für vier Wochen") : "nicht regelhaft erforderlich";
+      return {
+        diagnosen: `${d.entity}.
+- Aktuell: ${d.procedure}.`,
+        epikrise: `${d.patient} wurde mit symptomatischen paroxysmalen Tachykardien stationär aufgenommen. Es erfolgte komplikationslos die elektrophysiologische Untersuchung mit ${d.procedure}. Postinterventionell zeigte sich kein Perikarderguss; die Punktionsstelle war ${d.groin}. Entlassung am ${d.date} in stabilem Allgemeinzustand.`,
+        procedere: `${flutter ? `- Orale Antikoagulation ${oakText}` : "- Keine spezifische OAK-Indikation aus der EPU allein"}
+- Wiedervorstellung bei erneuten Beschwerden in der rhythmologischen Ambulanz`
+      };
+    }
+  },
+  {
+    id: "hypertensive_crisis",
+    title: "Hypertensive Krise",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "maxBP", label: "Maximaler Blutdruck", type: "text", default: "220/110 mmHg" },
+      { key: "acuteTherapy", label: "Initiale Blutdrucksenkung", type: "text", default: "Urapidil" },
+      { key: "lzrr", label: "LZ-RR", type: "text", default: "tagsüber leicht hypertone Mittelwerte" },
+      { key: "secondary", label: "Sekundärdiagnostik", type: "text", default: "Cushing- und Phäochromozytomdiagnostik unauffällig; ARR erhöht" },
+      { key: "next", label: "Weiteres Procedere", type: "text", default: "Kochsalzbelastungstest empfohlen" },
+      { key: "date", label: "Entlassdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => ({
+      diagnosen: `Hypertensive Krise bis maximal ${d.maxBP}.`,
+      epikrise: `${d.patient} wurde bei hypertensiver Entgleisung stationär aufgenommen. Nach initialer Blutdrucksenkung mit ${d.acuteTherapy} zeigten sich im Verlauf normotone Werte. In der Langzeit-RR-Messung fanden sich ${d.lzrr}. Zur Abklärung einer sekundären Hypertonie erfolgte eine erweiterte Diagnostik (${d.secondary}). Entlassung am ${d.date} in stabilem Allgemeinzustand.`,
+      procedere: `- Erneute LZ-RR-Kontrolle in 4 Wochen
+- Abhängig vom Verlauf antihypertensive Therapieanpassung
+- Weiterführende Abklärung: ${d.next}`
+    })
+  },
+  {
+    id: "bypass_op",
+    title: "Bypass-OP Vorbereitung",
+    fields: [
+      { key: "patient", label: "Patient", type: "text", default: "Der Patient" },
+      { key: "vesselDisease", label: "Gefäßerkrankung", type: "select", options: ["1", "2", "3"], default: "3" },
+      { key: "lesion", label: "Koronarbefund", type: "text", default: "hochgradige LAD/RCX/RCA-Stenosen" },
+      { key: "lvef", label: "LVEF", type: "text", default: "mittelgradig eingeschränkt" },
+      { key: "opv", label: "Prä-OP-Befunde", type: "text", default: "Rö-Thx, Abdomen-Sono und Lufu ohne Kontraindikationen" },
+      { key: "hospital", label: "Zielklinik", type: "text", default: "Schön Klinik Vogtareuth" },
+      { key: "opDate", label: "OP-Datum", type: "text", default: "27.05.2026" },
+      { key: "date", label: "Verlegungsdatum", type: "text", default: "20.05.2026" }
+    ],
+    build: (d) => ({
+      diagnosen: `Schwere koronare ${d.vesselDisease}-Gefäßerkrankung mit ${d.lesion} und Indikation zur operativen Bypass-Versorgung.`,
+      epikrise: `${d.patient} wurde zur elektiven Koronarangiographie stationär aufgenommen. Koronarangiographisch zeigte sich eine schwere koronare ${d.vesselDisease}-Gefäßerkrankung mit ${d.lesion} und hieraus resultierender Bypass-Indikation. Echokardiographisch fand sich eine ${d.lvef} linksventrikuläre Funktion. Die präoperativen Untersuchungen ergaben ${d.opv}. Verlegung am ${d.date} in die ${d.hospital} zur Bypass-Operation am ${d.opDate}.`,
+      procedere: `- Aufnahmetermin in ${d.hospital}
+- Bypass-Operation geplant am ${d.opDate}`
+    })
+  }
+
 ];
 
 const scenarioSelect = document.getElementById("scenario");
