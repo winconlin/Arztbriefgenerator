@@ -1,37 +1,24 @@
 # Arztbriefgenerator
 
-Lokaler, statischer Arztbriefgenerator ohne zusätzliche Installation.
+Lokaler Arztbriefgenerator als statische Website (ohne zusätzliche Installation).
 
 ## Start
 
 Einfach `index.html` im Browser öffnen.
 
-## Enthaltene Vorlagen (v3)
+## Enthalten
 
-- Elektive Koronarangiographie / PCI
-- ACS-PCI
-- Device: PM/ICD/CRT-P/CRT-D/LifeVest
-- Klappenvitien: TAVI, operativer Klappenersatz, M-TEER, T-TEER inkl. OPV-Block
-- Lungenarterienembolie inkl. optionaler Thrombektomie
-- Kardiale Dekompensation
-- TAA bei Vorhofflimmern
-- Elektrische Kardioversion
-- Pulmonalvenenisolation (EPU bei VHF)
-- Sonstige EPU (AVNRT/AVRT/WPW/CTI)
-- Hypertensive Krise
-- Bypass-OP Vorbereitung
+- Fallgruppen (Koronar, Device inkl. ICD/CRT-P/CRT-D/LifeVest, Klappenvitien inkl. M-/T-TEER, LAE inkl. Thrombektomie, Rhythmologie)
+- Ausgabe in 3 Felder: Aktuelle Diagnosen, Epikrise, Procedere
+- Feldmatrix + Vorlagenlogik in `templates.js`
+- Variabler Schreibstil mit Synonymen
+- Hausstandards:
+  - LDL default `<55 mg/dl`
+  - DAPT default elektive PCI `6 Monate` (anpassbar)
+  - DAPT default ACS-PCI `12 Monate`
+  - Datumsformat `TT.MM.JJJJ`
 
-## Hausstandards (abgebildet)
+## Hinweise
 
-- LDL-Ziel Default: `<55 mg/dl`
-- DAPT-Default: elektive PCI 6 Monate (anpassbar), ACS-PCI 12 Monate
-- Einheitliches Datumsformat: `TT.MM.JJJJ`
-- Terminmodule mit Datum/Uhrzeit/Ort + Überweisungshinweis
-- Standardisierter Punktionsstellen-Satz
-- Sprachstil wahlweise konservativ oder variabel (Synonymrotation)
-
-## Technischer Aufbau
-
-- `index.html`: Oberfläche
-- `styles.css`: Layout/UI
-- `app.js`: Feldmatrix, Template-Logik und Textgenerierung
+- Für echte klinische Nutzung müssen Inhalte ärztlich validiert und hausintern freigegeben werden.
+- Die Vorlagen lassen sich direkt in `templates.js` erweitern.
