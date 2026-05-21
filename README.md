@@ -1,6 +1,6 @@
 # Arztbriefgenerator
 
-Lokaler, statischer Arztbriefgenerator ohne zusätzliche Installation.
+Lokaler Arztbriefgenerator als statische Website (ohne zusätzliche Installation).
 
 ## Start
 
