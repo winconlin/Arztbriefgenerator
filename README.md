@@ -1,20 +1,26 @@
 # Arztbriefgenerator
 
-Lokaler, statischer Arztbriefgenerator inklusive **Template-Editor** und **Export/Import** als eine gemeinsame Datei.
+Lokaler Arztbriefgenerator mit 2 getrennten Ansichten:
+1. **Arztbriefgenerator**
+2. **Template Editor**
 
-## Start
+Es ist immer nur eine Ansicht sichtbar.
 
-`index.html` im Browser öffnen.
+## Template Editor (vereinfacht)
 
-## Neu: Template-Editor + Weitergabe
+- 3 Textfelder: Diagnosen, Epikrise, Procedere
+- Variablen-Einfügung direkt an Cursorposition als `[[variable_key]]`
+- Variablen-Eigenschaften:
+  - Typ (`text`, `number`, `select`, `date`, `boolean`, `multiline`)
+  - Name/Label
+  - Position (Diagnosen/Epikrise/Procedere)
+  - Sortierung
+  - Default-Wert
+  - Optionen (bei Dropdown)
+- Einblendbare Variablen-Tabelle ohne Code-Overload
 
-- Bestehende Templates können erweitert/ergänzt werden.
-- Neue Templates können mit Shared-Feldern und Custom-Feldern erstellt werden.
-- Alle Templates sind als **eine einzige JSON-Datei** exportierbar: `arztbrief_templates_all.json`.
-- Diese Datei kann auf anderen Rechnern wieder importiert werden (Weitergabe/Sammeldatei).
+## Export/Import
 
-## Architektur
-
-- `index.html`: Generator + Editor UI
-- `app.js`: Shared-Feldkatalog, Template-Store, Rendering, Editor, Export/Import
-- `styles.css`: Layout und UI
+- Exportiert **alle** Templates in **eine Datei**: `arztbrief_templates_all.json`
+- Importiert dieselbe Sammeldatei wieder
+- Speicherung lokal via `localStorage`

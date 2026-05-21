@@ -1,224 +1,131 @@
-const SHARED_FIELDS = [
-  { key: "patient_title", label: "Anrede", type: "select", options: ["Herr", "Frau", "Divers"], default: "Herr" },
-  { key: "patient_last_name", label: "Nachname", type: "text", default: "Mustermann" },
-  { key: "admission_date", label: "Aufnahmedatum", type: "text", default: "21.05.2026" },
-  { key: "discharge_date", label: "Entlassdatum", type: "text", default: "21.05.2026" },
-  { key: "ldl_target", label: "LDL-Ziel", type: "text", default: "<55 mg/dl" },
-  { key: "chadsvasc", label: "CHA2DS2-VASc", type: "number", default: "2" },
-  { key: "p2y12", label: "P2Y12", type: "select", options: ["Clopidogrel", "Prasugrel", "Ticagrelor"], default: "Clopidogrel" }
-];
-
-const DEFAULT_TEMPLATES = [
-  {
-    id: "acs_pci",
-    title: "ACS-PCI (hausstandard)",
-    fields: ["patient_title", "patient_last_name", { key: "acs_type", label: "ACS-Typ", type: "select", options: ["STEMI", "NSTEMI", "Instabile AP"], default: "NSTEMI" }, { key: "target_vessel", label: "Zielgefäß", type: "select", options: ["LAD", "RCA", "RCX"], default: "LAD" }, "p2y12", "ldl_target", "discharge_date"],
+const STORAGE_KEY = "arztbrief_templates_all_v2";
+const DEFAULT_DATA = {
+  templates: [{
+    id: "acs_standard",
+    title: "ACS Standard",
+    variables: [
+      { key:"patient_title", label:"Anrede", type:"select", options:["Herr","Frau","Divers"], default:"Herr", position:"epikrise", order:1 },
+      { key:"patient_name", label:"Nachname", type:"text", default:"Mustermann", position:"epikrise", order:2 },
+      { key:"p2y12", label:"P2Y12", type:"select", options:["Clopidogrel","Prasugrel","Ticagrelor"], default:"Ticagrelor", position:"procedere", order:1 },
+      { key:"discharge_date", label:"Entlassdatum", type:"date", default:"21.05.2026", position:"epikrise", order:99 }
+    ],
     output: {
-      diagnosen: "{{acs_type}} bei KHK mit Interventionsbedarf am {{target_vessel}}.",
-      epikrise: "{{patient_title}} {{patient_last_name}} wurde wegen {{acs_type}} stationär aufgenommen. Koronarangiographisch zeigte sich eine interventionspflichtige Läsion des {{target_vessel}}, die in gleicher Sitzung komplikationslos versorgt wurde. Es erfolgte die Empfehlung zur DAPT mit ASS und {{p2y12}}. Wir entlassen {{patient_title}} {{patient_last_name}} am {{discharge_date}} in stabilem Allgemeinzustand.",
-      procedere: "- DAPT entsprechend Hausstandard\n- LDL-Ziel {{ldl_target}}\n- Kardiologische Verlaufskontrollen"
+      diagnosen: "Akutes Koronarsyndrom bei KHK.",
+      epikrise: "{{patient_title}} {{patient_name}} wurde mit akutem Koronarsyndrom stationär aufgenommen. Koronarangiographisch zeigte sich eine interventionspflichtige Läsion, welche in gleicher Sitzung komplikationslos versorgt wurde. Wir entlassen {{patient_title}} {{patient_name}} am {{discharge_date}} in gutem Allgemeinzustand.",
+      procedere: "- DAPT mit ASS und {{p2y12}}\n- Kardiologische Verlaufskontrollen"
     }
-  },
-  {
-    id: "pvi",
-    title: "PVI (hausstandard)",
-    fields: ["patient_title", "patient_last_name", "chadsvasc", { key: "pvi_method", label: "Methode", type: "select", options: ["Kryo-Ballon", "Radiofrequenzablation", "Pulsed Field Ablation"], default: "Kryo-Ballon" }, "discharge_date"],
-    output: {
-      diagnosen: "Symptomatisches Vorhofflimmern; erfolgreiche PVI mittels {{pvi_method}}.",
-      epikrise: "{{patient_title}} {{patient_last_name}} stellte sich mit symptomatischem Vorhofflimmern stationär vor. Nach Ausschluss intracavitärer Thromben in der transösophagealen Echokardiographie erfolgte komplikationslos die elektrophysiologische Untersuchung mit erfolgreicher Isolation aller Pulmonalvenen mittels {{pvi_method}}. Der weitere Verlauf gestaltete sich unauffällig; postinterventionell konnte ein Perikarderguss ausgeschlossen werden. Bei CHA2DS2-VASc {{chadsvasc}} erfolgte die Festlegung der OAK-Dauer gemäß Hausstandard. Wir entlassen {{patient_title}} {{patient_last_name}} am {{discharge_date}} in gutem Allgemeinzustand in die weitere fachärztliche Betreuung.",
-      procedere: "- OAK-Fortführung entsprechend CHA2DS2-VASc\n- Rhythmologische Wiedervorstellung"
-    }
-  }
-];
+  }]
+};
 
-const STORAGE_KEY = "arztbrief_templates_v1";
-let templates = loadTemplates();
-let editorFields = [];
+let state = load();
+let activeEditorTextarea = null;
 
-const scenarioSelect = document.getElementById("scenario");
+function load(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || structuredClone(DEFAULT_DATA);} catch {return structuredClone(DEFAULT_DATA);} }
+function persist(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2)); }
+
+const scenario = document.getElementById("scenario");
 const fieldForm = document.getElementById("field-form");
-const matrixNode = document.getElementById("matrix");
 
-const sharedFieldSelect = document.getElementById("shared-field");
-const editorPreview = document.getElementById("editor-preview");
-
-function loadTemplates() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return structuredClone(DEFAULT_TEMPLATES);
-  try { return JSON.parse(raw); } catch { return structuredClone(DEFAULT_TEMPLATES); }
-}
-function saveTemplates() { localStorage.setItem(STORAGE_KEY, JSON.stringify(templates, null, 2)); }
-
-function resolveField(def) {
-  if (typeof def === "string") {
-    const found = SHARED_FIELDS.find((f) => f.key === def);
-    return found ? { ...found } : { key: def, label: def, type: "text", default: "" };
-  }
-  return { ...def };
+function renderTemplates(){
+  scenario.innerHTML="";
+  state.templates.forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=t.title;scenario.appendChild(o);});
 }
 
-function getTemplateById(id) { return templates.find((t) => t.id === id); }
+function getTemplate(){ return state.templates.find(t=>t.id===scenario.value); }
 
-function renderScenarioOptions() {
-  scenarioSelect.innerHTML = "";
-  templates.forEach((t) => {
-    const o = document.createElement("option");
-    o.value = t.id;
-    o.textContent = t.title;
-    scenarioSelect.appendChild(o);
-  });
+function inputFor(v){
+  if(v.type==="select") return `<select id="${v.key}">${(v.options||[]).map(o=>`<option>${o}</option>`).join("")}</select>`;
+  if(v.type==="number") return `<input id="${v.key}" type="number" value="${v.default||""}">`;
+  if(v.type==="boolean") return `<select id="${v.key}"><option>ja</option><option>nein</option></select>`;
+  return `<input id="${v.key}" value="${v.default||""}">`;
 }
 
-function renderSharedFieldOptions() {
-  sharedFieldSelect.innerHTML = "";
-  SHARED_FIELDS.forEach((f) => {
-    const o = document.createElement("option");
-    o.value = f.key;
-    o.textContent = `${f.label} (${f.key})`;
-    sharedFieldSelect.appendChild(o);
-  });
+function renderForm(){
+  const t=getTemplate(); if(!t)return;
+  const vars=[...t.variables].sort((a,b)=>a.order-b.order);
+  fieldForm.innerHTML=vars.map(v=>`<label>${v.label}</label>${inputFor(v)}`).join("");
+  generate();
 }
 
-function renderForm() {
-  const t = getTemplateById(scenarioSelect.value);
-  const fields = t.fields.map(resolveField);
-  fieldForm.innerHTML = '<div class="form-grid"></div>';
-  const grid = fieldForm.firstElementChild;
-  fields.forEach((f) => {
-    const wrap = document.createElement("div");
-    const label = document.createElement("label");
-    label.textContent = f.label;
-    wrap.appendChild(label);
-    let input;
-    if (f.type === "select") {
-      input = document.createElement("select");
-      (f.options || []).forEach((opt) => {
-        const o = document.createElement("option"); o.value = opt; o.textContent = opt; input.appendChild(o);
-      });
-    } else {
-      input = document.createElement("input");
-      input.type = f.type === "number" ? "number" : "text";
-    }
-    input.id = f.key;
-    input.value = f.default || "";
-    wrap.appendChild(input);
-    grid.appendChild(wrap);
-  });
-  renderMatrix(fields);
-  generateText();
+function collect(){
+  const t=getTemplate(); const d={};
+  t.variables.forEach(v=>d[v.key]=(document.getElementById(v.key)?.value||"").trim());
+  return d;
 }
 
-function renderMatrix(fields) {
-  const rows = fields.map((f) => `<tr><td>${f.key}</td><td>${f.label}</td><td>${f.type}</td><td>${f.default || ""}</td></tr>`).join("");
-  matrixNode.innerHTML = `<table><thead><tr><th>Key</th><th>Label</th><th>Typ</th><th>Default</th></tr></thead><tbody>${rows}</tbody></table>`;
+function fill(text,data){ return text.replace(/\{\{\s*([\w_]+)\s*\}\}/g,(_,k)=>data[k]??""); }
+
+function generate(){
+  const t=getTemplate(); if(!t)return;
+  const d=collect();
+  document.getElementById("diagnosen").value=fill(t.output.diagnosen,d);
+  document.getElementById("epikrise").value=fill(t.output.epikrise,d);
+  document.getElementById("procedere").value=fill(t.output.procedere,d);
 }
 
-function collectData(template) {
-  const data = {};
-  template.fields.map(resolveField).forEach((f) => { data[f.key] = (document.getElementById(f.key)?.value || "").trim(); });
-  return data;
+function redrawVarTable(){
+  const rows=(getTemplate()?.variables||[]).map(v=>`<tr><td>${v.key}</td><td>${v.label}</td><td>${v.type}</td><td>${v.position}</td><td>${v.order}</td></tr>`).join("");
+  document.getElementById("var-table").innerHTML=`<table><tr><th>Key</th><th>Name</th><th>Typ</th><th>Position</th><th>Order</th></tr>${rows}</table>`;
 }
 
-function fill(templateText, data) {
-  return templateText.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, (_, key) => data[key] ?? "");
-}
+// tabs
+const vg=document.getElementById("view-generator"), ve=document.getElementById("view-editor");
+document.getElementById("tab-generator").onclick=()=>{vg.classList.remove("hidden");ve.classList.add("hidden");document.getElementById("tab-generator").classList.add("active");document.getElementById("tab-editor").classList.remove("active");};
+document.getElementById("tab-editor").onclick=()=>{ve.classList.remove("hidden");vg.classList.add("hidden");document.getElementById("tab-editor").classList.add("active");document.getElementById("tab-generator").classList.remove("active");redrawVarTable();};
 
-function generateText() {
-  const t = getTemplateById(scenarioSelect.value);
-  const d = collectData(t);
-  document.getElementById("diagnosen").value = fill(t.output.diagnosen, d);
-  document.getElementById("epikrise").value = fill(t.output.epikrise, d);
-  document.getElementById("procedere").value = fill(t.output.procedere, d);
-}
+// editor behavior
+["tpl-diagnosen","tpl-epikrise","tpl-procedere"].forEach(id=>{document.getElementById(id).addEventListener("focus",e=>activeEditorTextarea=e.target);});
+document.getElementById("insert-var").onclick=()=>{
+  const key=document.getElementById("var-key").value.trim(); if(!key||!activeEditorTextarea)return;
+  const token=`[[${key}]]`; const t=activeEditorTextarea; const s=t.selectionStart||0,e=t.selectionEnd||0;
+  t.value=t.value.slice(0,s)+token+t.value.slice(e); t.selectionStart=t.selectionEnd=s+token.length;
+};
 
-function updateEditorPreview() {
-  editorPreview.textContent = JSON.stringify(editorFields, null, 2);
-}
+document.getElementById("save-var").onclick=()=>{
+  const t=getTemplate(); if(!t)return;
+  const type=document.getElementById("var-type").value;
+  const v={ key:document.getElementById("var-key").value.trim(), label:document.getElementById("var-label").value.trim(), type, position:document.getElementById("var-position").value, order:Number(document.getElementById("var-order").value||1), default:document.getElementById("var-default").value.trim() };
+  if(!v.key||!v.label)return;
+  if(type==="select") v.options=document.getElementById("var-options").value.split(",").map(x=>x.trim()).filter(Boolean);
+  t.variables=t.variables.filter(x=>x.key!==v.key); t.variables.push(v); persist(); renderForm(); redrawVarTable();
+};
 
-document.getElementById("add-field").addEventListener("click", () => {
-  const kind = document.getElementById("field-kind").value;
-  if (kind === "shared") {
-    editorFields.push(document.getElementById("shared-field").value);
-  } else {
-    const type = document.getElementById("custom-type").value;
-    const field = {
-      key: document.getElementById("custom-key").value.trim(),
-      label: document.getElementById("custom-label").value.trim(),
-      type,
-      default: document.getElementById("custom-default").value.trim()
-    };
-    if (!field.key || !field.label) return;
-    if (type === "select") field.options = document.getElementById("custom-options").value.split(",").map((s) => s.trim()).filter(Boolean);
-    editorFields.push(field);
-  }
-  updateEditorPreview();
-});
-
-document.getElementById("create-template").addEventListener("click", () => {
-  const id = document.getElementById("template-id").value.trim();
-  const title = document.getElementById("template-title").value.trim();
-  if (!id || !title || editorFields.length === 0) return;
-  const t = {
-    id,
-    title,
-    fields: editorFields,
-    output: {
-      diagnosen: "{{patient_title}} {{patient_last_name}}",
-      epikrise: "Bitte Template-Epikrise im Editor anpassen.",
-      procedere: "- Bitte Procedere anpassen"
+document.getElementById("save-template").onclick=()=>{
+  const id=document.getElementById("template-id").value.trim(); const title=document.getElementById("template-title").value.trim();
+  if(!id||!title)return;
+  const base=getTemplate() || {variables:[]};
+  const tpl={
+    id,title,variables:base.variables||[],
+    output:{
+      diagnosen:document.getElementById("tpl-diagnosen").value.replace(/\[\[([\w_]+)\]\]/g,"{{$1}}"),
+      epikrise:document.getElementById("tpl-epikrise").value.replace(/\[\[([\w_]+)\]\]/g,"{{$1}}"),
+      procedere:document.getElementById("tpl-procedere").value.replace(/\[\[([\w_]+)\]\]/g,"{{$1}}")
     }
   };
-  templates = templates.filter((x) => x.id !== id);
-  templates.push(t);
-  saveTemplates();
-  renderScenarioOptions();
-  scenarioSelect.value = id;
-  renderForm();
-  editorFields = [];
-  updateEditorPreview();
-});
+  state.templates=state.templates.filter(x=>x.id!==id); state.templates.push(tpl); persist(); renderTemplates(); scenario.value=id; renderForm(); redrawVarTable();
+};
 
-document.getElementById("export-templates").addEventListener("click", () => {
-  const payload = { sharedFields: SHARED_FIELDS, templates };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "arztbrief_templates_all.json";
-  a.click();
-  URL.revokeObjectURL(a.href);
-});
+document.getElementById("export-all").onclick=()=>{
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="arztbrief_templates_all.json"; a.click(); URL.revokeObjectURL(a.href);
+};
 
-document.getElementById("import-templates").addEventListener("change", async (e) => {
-  const f = e.target.files?.[0];
-  if (!f) return;
-  const text = await f.text();
-  const parsed = JSON.parse(text);
-  if (!Array.isArray(parsed.templates)) return;
-  templates = parsed.templates;
-  saveTemplates();
-  renderScenarioOptions();
-  scenarioSelect.value = templates[0]?.id || "";
-  renderForm();
-});
+document.getElementById("import-all").onchange=async(e)=>{
+  const f=e.target.files?.[0]; if(!f)return; const parsed=JSON.parse(await f.text());
+  if(!Array.isArray(parsed.templates)) return;
+  state=parsed; persist(); renderTemplates(); scenario.value=state.templates[0]?.id||""; renderForm(); redrawVarTable();
+};
 
-scenarioSelect.addEventListener("change", renderForm);
-fieldForm.addEventListener("input", generateText);
-document.getElementById("generate").addEventListener("click", generateText);
+// generator actions
+scenario.onchange=()=>{renderForm();
+  const t=getTemplate(); if(!t)return;
+  document.getElementById("template-id").value=t.id; document.getElementById("template-title").value=t.title;
+  document.getElementById("tpl-diagnosen").value=t.output.diagnosen.replace(/\{\{\s*([\w_]+)\s*\}\}/g,"[[$1]]");
+  document.getElementById("tpl-epikrise").value=t.output.epikrise.replace(/\{\{\s*([\w_]+)\s*\}\}/g,"[[$1]]");
+  document.getElementById("tpl-procedere").value=t.output.procedere.replace(/\{\{\s*([\w_]+)\s*\}\}/g,"[[$1]]");
+};
+fieldForm.addEventListener("input",generate);
+document.getElementById("generate").onclick=generate;
+document.getElementById("copy-all").onclick=async()=>{await navigator.clipboard.writeText(["Diagnosen",diagnosen.value,"","Epikrise",epikrise.value,"","Procedere",procedere.value].join("\n"));};
 
-document.querySelectorAll("[data-copy]").forEach((btn) => {
-  btn.addEventListener("click", async () => {
-    const id = btn.getAttribute("data-copy");
-    await navigator.clipboard.writeText(document.getElementById(id).value);
-  });
-});
-
-document.getElementById("copy-all").addEventListener("click", async () => {
-  const text = ["Aktuelle Diagnosen", document.getElementById("diagnosen").value, "", "Epikrise", document.getElementById("epikrise").value, "", "Procedere", document.getElementById("procedere").value].join("\n");
-  await navigator.clipboard.writeText(text);
-});
-
-renderSharedFieldOptions();
-renderScenarioOptions();
-scenarioSelect.value = templates[0].id;
-renderForm();
-updateEditorPreview();
+renderTemplates(); scenario.value=state.templates[0].id; scenario.onchange();
