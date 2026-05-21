@@ -9,13 +9,13 @@
 <body>
   <header class="topbar">
     <h1>Arztbriefgenerator</h1>
-    <p>Lokal, schnell und standardisiert — ohne zusätzliche Installation.</p>
+    <p>Lokal, schnell und standardisiert — mit Template-Editor und Export/Import.</p>
   </header>
 
   <main class="layout">
     <section class="card controls">
-      <h2>1) Fall auswählen</h2>
-      <label for="scenario">Fallgruppe</label>
+      <h2>1) Template auswählen</h2>
+      <label for="scenario">Template</label>
       <select id="scenario"></select>
 
       <h2>2) Eingaben</h2>
@@ -34,18 +34,80 @@
 
     <section class="card output">
       <h2>Aktuelle Diagnosen</h2>
-      <textarea id="diagnosen" rows="7" readonly></textarea>
+      <textarea id="diagnosen" rows="6" readonly></textarea>
       <button data-copy="diagnosen" class="secondary">Diagnosen kopieren</button>
 
       <h2>Epikrise</h2>
-      <textarea id="epikrise" rows="14" readonly></textarea>
+      <textarea id="epikrise" rows="12" readonly></textarea>
       <button data-copy="epikrise" class="secondary">Epikrise kopieren</button>
 
       <h2>Procedere</h2>
-      <textarea id="procedere" rows="10" readonly></textarea>
+      <textarea id="procedere" rows="8" readonly></textarea>
       <button data-copy="procedere" class="secondary">Procedere kopieren</button>
     </section>
   </main>
+
+  <section class="card editor">
+    <h2>Template-Editor</h2>
+    <p>Neue Templates erstellen/ändern und als <strong>eine Datei mit allen Templates</strong> exportieren.</p>
+    <div class="editor-grid">
+      <div>
+        <label for="template-id">Template-ID</label>
+        <input id="template-id" type="text" placeholder="z. B. custom_pvi" />
+      </div>
+      <div>
+        <label for="template-title">Template-Titel</label>
+        <input id="template-title" type="text" placeholder="z. B. PVI Hausstandard 2" />
+      </div>
+      <div>
+        <label for="field-kind">Feldtyp</label>
+        <select id="field-kind">
+          <option value="shared">Shared Feld (empfohlen)</option>
+          <option value="custom">Eigenes Feld</option>
+        </select>
+      </div>
+      <div>
+        <label for="shared-field">Shared Feld</label>
+        <select id="shared-field"></select>
+      </div>
+      <div>
+        <label for="custom-key">Custom Key</label>
+        <input id="custom-key" type="text" placeholder="z. B. my_special_value" />
+      </div>
+      <div>
+        <label for="custom-label">Custom Label</label>
+        <input id="custom-label" type="text" placeholder="z. B. Spezieller Befund" />
+      </div>
+      <div>
+        <label for="custom-type">Custom Inputtyp</label>
+        <select id="custom-type">
+          <option value="text">text</option>
+          <option value="number">number</option>
+          <option value="select">select</option>
+        </select>
+      </div>
+      <div>
+        <label for="custom-default">Default</label>
+        <input id="custom-default" type="text" />
+      </div>
+      <div class="full">
+        <label for="custom-options">Select-Optionen (comma-separated)</label>
+        <input id="custom-options" type="text" placeholder="ja,nein" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="add-field" type="button">Feld hinzufügen</button>
+      <button id="create-template" type="button">Template speichern</button>
+      <button id="export-templates" type="button" class="secondary">Alle Templates exportieren</button>
+      <label class="import-label secondary">
+        Alle Templates importieren
+        <input id="import-templates" type="file" accept="application/json" />
+      </label>
+    </div>
+
+    <pre id="editor-preview"></pre>
+  </section>
 
   <script src="app.js"></script>
 </body>
