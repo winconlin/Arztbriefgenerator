@@ -9,50 +9,44 @@
 <body>
   <header class="topbar">
     <h1>Arztbriefgenerator</h1>
-    <p>Lokale, schnelle Erstellung standardisierter Arztbriefe.</p>
+    <p>Lokal, schnell und standardisiert — ohne zusätzliche Installation.</p>
   </header>
 
   <main class="layout">
-    <section class="panel form-panel">
-      <h2>Eingaben</h2>
+    <section class="card controls">
+      <h2>1) Fall auswählen</h2>
+      <label for="scenario">Fallgruppe</label>
+      <select id="scenario"></select>
 
-      <label>Fallgruppe
-        <select id="caseGroup"></select>
-      </label>
+      <h2>2) Eingaben</h2>
+      <form id="field-form"></form>
 
-      <label>Vorlage
-        <select id="template"></select>
-      </label>
+      <div class="actions">
+        <button id="generate" type="button">Text aktualisieren</button>
+        <button id="copy-all" type="button" class="secondary">Alles kopieren</button>
+      </div>
 
-      <label>Stil
-        <select id="styleMode">
-          <option value="conservative">Konsistent-konservativ</option>
-          <option value="variable">Variabel-natürlich</option>
-        </select>
-      </label>
-
-      <div id="fields" class="fields"></div>
+      <details>
+        <summary>Feldmatrix (aktuelle Vorlage)</summary>
+        <div id="matrix"></div>
+      </details>
     </section>
 
-    <section class="panel output-panel">
-      <h2>Ausgabe</h2>
-      <div class="output-block">
-        <div class="output-head"><h3>Aktuelle Diagnosen</h3><button data-copy="diagnosen">Kopieren</button></div>
-        <textarea id="diagnosen" readonly></textarea>
-      </div>
-      <div class="output-block">
-        <div class="output-head"><h3>Epikrise</h3><button data-copy="epikrise">Kopieren</button></div>
-        <textarea id="epikrise" readonly></textarea>
-      </div>
-      <div class="output-block">
-        <div class="output-head"><h3>Procedere</h3><button data-copy="procedere">Kopieren</button></div>
-        <textarea id="procedere" readonly></textarea>
-      </div>
-      <button id="copyAll" class="primary">Alles kopieren</button>
+    <section class="card output">
+      <h2>Aktuelle Diagnosen</h2>
+      <textarea id="diagnosen" rows="7" readonly></textarea>
+      <button data-copy="diagnosen" class="secondary">Diagnosen kopieren</button>
+
+      <h2>Epikrise</h2>
+      <textarea id="epikrise" rows="14" readonly></textarea>
+      <button data-copy="epikrise" class="secondary">Epikrise kopieren</button>
+
+      <h2>Procedere</h2>
+      <textarea id="procedere" rows="10" readonly></textarea>
+      <button data-copy="procedere" class="secondary">Procedere kopieren</button>
     </section>
   </main>
 
-  <script src="templates.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
