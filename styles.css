@@ -1,0 +1,15 @@
+:root { --bg:#f3f5f9; --card:#fff; --text:#1f2937; --muted:#6b7280; --primary:#0f62fe; --border:#d1d5db; }
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--bg)}
+.topbar{background:linear-gradient(135deg,#0f62fe,#4589ff);color:#fff;padding:1rem 1.5rem}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;margin:1rem}
+label{font-size:.88rem;color:var(--muted);display:block;margin:.5rem 0 .25rem}
+input,select,textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:.55rem .65rem;font:inherit}
+.form-grid,.editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.full{grid-column:1/-1}
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+button,.import-label{border:none;border-radius:8px;padding:.6rem .8rem;background:var(--primary);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.secondary{background:#374151;color:#fff}
+.import-label input{display:none}
+pre{background:#0b1020;color:#e5ecff;padding:.7rem;border-radius:8px;overflow:auto;max-height:260px}
+@media (max-width:950px){.layout{grid-template-columns:1fr}.editor-grid{grid-template-columns:1fr}}
