@@ -88,6 +88,37 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 .statusbar-error { background: var(--farbe-fehler-flaeche); color: var(--farbe-fehler); }
 
 /* ---------------------------------------------------------------- */
+/* Startdiagnose                                                     */
+/* ---------------------------------------------------------------- */
+
+.startup-notice {
+  margin: var(--abstand);
+  padding: var(--abstand);
+  border: 1px solid var(--farbe-rand);
+  border-left: 5px solid var(--farbe-akzent);
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+}
+.startup-notice h2 { margin: 0 0 6px; }
+.startup-notice.is-error { border-left-color: var(--farbe-fehler); background: var(--farbe-fehler-flaeche); }
+
+/*
+  Der Fehlerhinweis blendet sich rein per CSS nach drei Sekunden ein. Startet
+  die Anwendung normal, ist der gesamte Block bis dahin längst ausgeblendet.
+  Ohne JavaScript bleibt so trotzdem eine verständliche Meldung stehen.
+*/
+.startup-hint {
+  margin: 0;
+  opacity: 0;
+  animation: startup-hint-einblenden 0.4s ease-in 3s forwards;
+}
+@keyframes startup-hint-einblenden { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .startup-hint { animation-duration: 0.01s; }
+}
+
+/* ---------------------------------------------------------------- */
 /* Grundlayout                                                       */
 /* ---------------------------------------------------------------- */
 

@@ -7,15 +7,23 @@
     Datenschutz und Sicherheit:
     Die Content-Security-Policy verbietet jede Netzwerkverbindung. Damit kann
     die Anwendung – auch bei einem Fehler oder einer manipulierten Vorlage –
-    keine Patientendaten nach außen senden. Erlaubt sind ausschließlich
-    Skripte und Stile aus diesem Ordner.
+    keine Patientendaten nach außen senden.
+
+    Zu "file:" in script-src und style-src: Wird index.html per Doppelklick
+    geöffnet, ist die Herkunft der Seite "null"; 'self' greift dann je nach
+    Browser nicht, und das mitgelieferte Bundle sowie das Stylesheet würden
+    blockiert. Deshalb ist ausschließlich das lokale Dateischema zusätzlich
+    erlaubt. Netzwerkquellen bleiben ausgeschlossen: default-src 'none' und
+    connect-src 'none' gelten unverändert, ebenso das Verbot von 'unsafe-inline'
+    und 'unsafe-eval'. Wer Dateien auf dem Rechner ablegen kann, könnte ohnehin
+    index.html selbst verändern – die Angriffsfläche wächst dadurch nicht.
   -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
-    script-src 'self';
-    style-src 'self';
-    img-src 'self' data:;
-    font-src 'self';
+    script-src 'self' file:;
+    style-src 'self' file:;
+    img-src 'self' file: data:;
+    font-src 'self' file:;
     connect-src 'none';
     form-action 'none';
     frame-src 'none';
@@ -45,6 +53,24 @@
   <noscript>
     <p class="banner banner-error">Für diesen Generator wird JavaScript benötigt. Es werden dabei keine Daten übertragen – die gesamte Verarbeitung findet in Ihrem Browser statt.</p>
   </noscript>
+
+  <!--
+    Startdiagnose: Dieser Hinweis steht statisch im HTML und wird von
+    src/main.js nach erfolgreicher Initialisierung ausgeblendet. Lädt das
+    Skript nicht oder scheitert der Start, bleibt er stehen – der zweite
+    Absatz blendet sich nach kurzer Zeit rein per CSS ein, damit auch ohne
+    JavaScript eine verständliche Fehlermeldung erscheint.
+  -->
+  <section id="start-hinweis" class="startup-notice" role="status" aria-live="polite">
+    <h2 id="start-hinweis-titel">Anwendung wird gestartet …</h2>
+    <p id="start-hinweis-text" class="startup-hint">
+      Die Anwendung konnte nicht gestartet werden. Bitte stellen Sie sicher, dass das
+      heruntergeladene Archiv <strong>vollständig entpackt</strong> wurde und der Ordner
+      <code>dist</code> neben <code>index.html</code> liegt. Das Öffnen direkt aus der
+      ZIP-Vorschau des Betriebssystems funktioniert nicht.
+      Technische Einzelheiten stehen in der Browserkonsole (Taste <kbd>F12</kbd>).
+    </p>
+  </section>
 
   <main id="ansicht-generator" class="layout" role="tabpanel" aria-labelledby="tab-generator">
     <section class="card controls" aria-label="Eingaben">
@@ -137,6 +163,12 @@
     </p>
   </footer>
 
-  <script type="module" src="src/main.js"></script>
+  <!--
+    Klassisches Skript, kein ES-Modul: Browser verweigern das Laden von
+    Modulen über file:// (CORS, Origin "null"). Das Bundle wird aus den
+    Modulen unter src/ erzeugt ("npm run build") und ist mitcommittet, damit
+    ein Doppelklick auf index.html ohne jede Installation genügt.
+  -->
+  <script defer src="dist/app.bundle.js"></script>
 </body>
 </html>

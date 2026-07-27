@@ -1,11 +1,15 @@
 {
   "name": "arztbriefgenerator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Lokaler Arztbriefgenerator - laeuft vollstaendig offline im Browser, ohne Build-Schritt und ohne Abhaengigkeiten.",
+  "description": "Lokaler Arztbriefgenerator - laeuft vollstaendig offline im Browser, per Doppelklick auf index.html, ohne Installation und ohne Abhaengigkeiten.",
   "scripts": {
+    "build": "node tools/build.mjs",
+    "build:check": "node tools/build.mjs --check",
     "test": "node --test \"tests/*.test.js\"",
+    "test:file": "node tools/smoke.mjs",
+    "test:browser": "node tools/smoke.mjs --http",
     "start": "python3 -m http.server 8080"
   },
   "engines": {

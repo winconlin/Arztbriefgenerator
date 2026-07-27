@@ -150,7 +150,11 @@ export function createStore({ builtinTemplates = [], sharedGroups = [] } = {}) {
       state.values = {};
       state.manualSections = new Map();
       applyDefaultsForMissingValues();
-      commit('values');
+      // Grund "reset" statt "values": Die Maske muss neu aufgebaut werden,
+      // sonst zeigen die Eingabefelder weiterhin die alten Texte an, obwohl
+      // der Datensatz bereits leer ist. Bei "values" wird bewusst nicht neu
+      // gerendert, damit das Tippen den Fokus behält.
+      commit('reset');
     },
 
     /* Manuelle Nachbearbeitung der Ausgabe */
@@ -236,7 +240,11 @@ export function createStore({ builtinTemplates = [], sharedGroups = [] } = {}) {
       state.manualSections = new Map();
       state.settings = { ...DEFAULT_SETTINGS };
       state.activeTemplateId = '';
-      commit('reset');
+      // Bewusst ohne persist(): Nach "Alle lokal gespeicherten Daten löschen"
+      // soll der Speicher tatsächlich leer bleiben und nicht sofort wieder
+      // mit einem Standardzustand beschrieben werden.
+      saveError = null;
+      notify('reset');
     },
   };
 }

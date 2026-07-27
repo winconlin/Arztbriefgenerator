@@ -9,25 +9,37 @@ Die 23 mitgelieferten Vorlagen stammen wörtlich aus
 
 ---
 
-## Starten
+## Starten (für Anwender)
 
-Es genügt, `index.html` im Browser zu öffnen – ein Doppelklick reicht.
+1. ZIP-Archiv von GitHub herunterladen.
+2. Archiv **vollständig entpacken** – in einen normalen Ordner, z. B. auf dem
+   Desktop.
+3. `index.html` doppelklicken.
 
-Für den vollen Funktionsumfang ist ein lokaler Webserver zu empfehlen, weil
-einige Browser ES-Module und die Zwischenablage unter `file://` einschränken:
+Das war alles. Es wird **kein** Webserver, **kein** Node.js, **kein** Terminal
+und **keine** Installation benötigt. In der Adresszeile des Browsers steht
+danach `file:///…` – genau so ist es gedacht.
+
+> **Wichtig:** Das Archiv muss zuerst entpackt werden. Wird `index.html` direkt
+> aus der ZIP-Vorschau des Betriebssystems geöffnet, fehlen die übrigen
+> Dateien und die Anwendung startet nicht. Achten Sie darauf, dass der Ordner
+> `dist` neben `index.html` liegt.
+
+Voraussetzung ist ein aktueller Browser: Chrome, Edge oder Firefox ab
+Version 98 (Frühjahr 2022) beziehungsweise Safari 15.4.
+
+Startet die Anwendung nicht, bleibt ein deutlich sichtbarer Hinweis stehen und
+nennt den Grund; technische Einzelheiten stehen in der Browserkonsole
+(Taste <kbd>F12</kbd>).
+
+### Optional: über einen lokalen Server
+
+Für die Entwicklung lässt sich die Anwendung zusätzlich über HTTP ausliefern.
+Für die reguläre Nutzung ist das **nicht** erforderlich:
 
 ```bash
-# im Projektordner
-python3 -m http.server 8080
-# danach http://localhost:8080 im Browser öffnen
+npm start          # entspricht: python3 -m http.server 8080
 ```
-
-Alternativ `npm start` (startet denselben Server) oder eine beliebige
-„Live Server"-Erweiterung der Entwicklungsumgebung.
-
-Voraussetzung ist ein aktueller Browser (Chrome, Edge, Firefox oder Safari in
-einer Version ab 2022). Node.js wird **nur** für die Tests benötigt, nicht für
-den Betrieb.
 
 ## Bedienung
 
@@ -130,7 +142,14 @@ technisch abgesichert:
 
 * Die `Content-Security-Policy` in `index.html` setzt `default-src 'none'` und
   `connect-src 'none'`. Selbst ein Fehler oder eine manipulierte Vorlage
-  könnten keine Verbindung nach außen aufbauen.
+  könnten keine Verbindung nach außen aufbauen. Der Smoke-Test weist beides
+  aktiv nach: Ein eingeschleustes Inline-Skript wird blockiert, ein `fetch`
+  nach außen ebenfalls.
+* `script-src` und `style-src` erlauben neben `'self'` das lokale Schema
+  `file:`. Beim Doppelklick hat die Seite die Herkunft `null`, sodass `'self'`
+  je nach Browser nicht greift und Skript und Stylesheet blockiert würden.
+  Netzwerkquellen bleiben ausgeschlossen, `'unsafe-inline'` und
+  `'unsafe-eval'` sind weiterhin nicht erlaubt.
 * Der Quelltext enthält **kein** `fetch`, `XMLHttpRequest`, `WebSocket`,
   `sendBeacon`, keine externen Skripte, Schriften oder Bilder und keine
   Telemetrie.
@@ -152,11 +171,26 @@ findet kein Netzwerkzugriff statt.
 
 ## Architektur
 
-Vanilla-JavaScript mit ES6-Modulen, ohne Abhängigkeiten und ohne Build-Schritt.
+Vanilla-JavaScript mit ES6-Modulen und ohne jede Abhängigkeit – weder zur
+Laufzeit noch für den Build.
+
+Die Anwendung wird als **ein klassisches Skript** ausgeliefert
+(`dist/app.bundle.js`). Grund: Browser verweigern das Laden von ES-Modulen
+über `file://` (die Seite hat dann die Herkunft `null`, das Laden scheitert an
+der CORS-Prüfung). Ein Modul-Einstiegspunkt würde beim Doppelklick also
+komplett stumm fehlschlagen. Die modularen Quellen unter `src/` bleiben die
+maßgebliche Fassung; das Bundle wird daraus erzeugt und ist mitcommittet,
+damit der heruntergeladene Ordner sofort funktioniert.
 
 ```
 index.html            Markup, Content-Security-Policy
 styles.css            Gestaltung inkl. Druckansicht
+dist/
+  app.bundle.js       ERZEUGT – ausgeliefertes klassisches Skript
+tools/
+  bundler.mjs         ES-Module -> klassisches Skript
+  build.mjs           Build und Aktualitätsprüfung
+  smoke.mjs           Browsertest über file:// und http
 src/
   main.js             Bootstrap, verbindet Zustand und Oberfläche
   engine/             Template-Engine, ohne DOM-Bezug und einzeln testbar
@@ -201,17 +235,75 @@ Eigene Vorlagen entstehen am einfachsten im Editor und werden im `localStorage`
 abgelegt. Sollen sie fest mitgeliefert werden, genügt eine neue Datei unter
 `src/data/templates/` und ein Eintrag in `src/data/templates/index.js`.
 
+## Für Entwickler
+
+Bearbeitet wird **ausschließlich** `src/`. Nach jeder Änderung muss das Bundle
+neu erzeugt werden:
+
+```bash
+npm run build          # erzeugt dist/app.bundle.js aus src/
+npm test               # 128 Logik- und Bundle-Tests
+```
+
+> **Regel:** `dist/app.bundle.js` gehört in denselben Commit wie die Änderung
+> an `src/`. Andernfalls lädt der heruntergeladene Ordner eine veraltete
+> Fassung. `npm test` schlägt fehl, wenn das Bundle nicht dem Stand von `src/`
+> entspricht; `npm run build:check` prüft das auch einzeln, etwa in einem
+> Pre-Commit-Hook oder in der CI.
+
+`dist/app.bundle.js` wird erzeugt und ist **nicht von Hand zu bearbeiten**.
+Der Bundler (`tools/bundler.mjs`, rund 300 Zeilen, ohne Abhängigkeiten) fasst
+den Modulgraphen zu einem klassischen Skript zusammen. Er verändert
+ausschließlich `import`- und `export`-Anweisungen; jedes andere Zeichen –
+insbesondere die medizinischen Vorlagentexte – wird unverändert übernommen.
+Das sichert ein eigener Test ab.
+
+### Browsertests
+
+```bash
+npm run test:file      # Smoke-Test über eine echte file://-URL
+npm run test:browser   # zusätzlich über einen lokalen HTTP-Server
+```
+
+Diese Tests brauchen Playwright als reine Entwicklungsabhängigkeit; fehlt es,
+melden sie das und enden ohne Fehler. Für den Betrieb der Anwendung wird es
+nicht benötigt.
+
+```bash
+npm install --no-save playwright && npx playwright install chromium
+```
+
+Steht bereits ein Browser bereit, lässt er sich über die Umgebungsvariable
+`ARZTBRIEF_BROWSER_PATH` verwenden. Mit `--browser=firefox` läuft derselbe
+Test gegen Firefox.
+
+### Manueller Test in Firefox
+
+Falls Firefox nicht automatisiert zur Verfügung steht, ist dieser Ablauf
+reproduzierbar von Hand durchzuführen:
+
+1. `npm run build` ausführen.
+2. Im Dateimanager `index.html` per Doppelklick in Firefox öffnen; die
+   Adresszeile muss mit `file:///` beginnen.
+3. Konsole öffnen (<kbd>F12</kbd>) und prüfen: keine Fehler, insbesondere
+   keine CSP- oder CORS-Meldung zu `dist/app.bundle.js`.
+4. Der Starthinweis darf nicht mehr sichtbar sein.
+5. Vorlagen-Dropdown enthält 23 Einträge; Vorlage „Akutes Koronarsyndrom"
+   wählen, Nachnamen eintippen – der Brief rechts muss sich mitändern.
+6. Beide Reiter durchschalten, Bausteindialog öffnen und schließen,
+   „Alles kopieren" auslösen und die Rückmeldung prüfen.
+
 ## Tests
 
 ```bash
-npm test          # entspricht: node --test "tests/*.test.js"
+npm test
 ```
 
-115 Tests, keine Abhängigkeiten, Node.js ab Version 18. Abgedeckt sind der
+128 Tests, keine Abhängigkeiten, Node.js ab Version 18. Abgedeckt sind der
 Ausdrucksparser, der Vorlagen-Parser, Filter, Bedingungen und Schleifen, die
 Nachbereinigung, Schema-Validierung, abgeleitete Platzhalter, Persistenz und
-Migration, Import/Export sowie die inhaltliche Vollständigkeit aller 23
-Vorlagen gegenüber den Quelldokumenten.
+Migration, Import/Export, die inhaltliche Vollständigkeit aller 23 Vorlagen
+gegenüber den Quelldokumenten sowie das ausgelieferte Bundle.
 
 ## Weitere Unterlagen
 
