@@ -60,7 +60,7 @@ umgesetzt; die Abnahme erfolgt in Phase E gegen genau diese Tabelle.
 | `pneumonie` | Septische Pneumonie | T | Pneumologie | 4 | 🔴 |
 | `lungenkarzinom_staging` | Lungenkarzinom – Staging-Komplettierung | T | Pneumologie/Onkologie | 4 | 🔴 |
 | `todesfall_palliativ` | Todesfall / palliativer Verlauf | T | Allgemein | 2 | 🔴 |
-| — | Bausteinbibliothek (21 Blöcke) | T | — | — | 🔴 kein Konzept vorhanden |
+| — | Bausteinbibliothek (25 Blöcke) | T | — | — | 🔴 kein Konzept vorhanden |
 
 Zusätzlich im Prototyp vorhanden, **aber ohne Beleg in den Quelldokumenten**:
 `lifevest` (LifeVest-Versorgung) und die M-TEER/T-TEER-Optionen in
@@ -670,9 +670,19 @@ Felder: `vorstellung_datum`, `vorstellung_grund`, `befunde_verlauf` (multiline),
 
 ## 4. Bausteinbibliothek (`Textbausteine_Kardio.docx`, Blöcke ohne eigenen Brief)
 
-Diese 21 Blöcke sind **keine** vollständigen Briefe, sondern wiederverwendbare
-Absätze. Sie werden als eigene Bibliothek geführt und lassen sich in jeden
-Abschnitt einfügen.
+Diese 25 Blöcke sind **keine** vollständigen Briefe, sondern wiederverwendbare
+Absätze. Sie werden als eigene Bibliothek geführt (`src/data/snippets.js`) und
+lassen sich an der Cursorposition in jeden Abschnitt einfügen.
+
+Verteilung auf die Kategorien der Bedienoberfläche – so auch in
+`tests/templates.test.js` festgeschrieben:
+
+| Kategorie | Anzahl | Bausteine |
+| --- | --- | --- |
+| Anamnese & Untersuchung | 3 | `veg_anamnese`, `ku_ausfuehrlich`, `ku_kurz` |
+| Technische Befunde | 11 | `lz_rr`, `lz_ekg`, `lz_ekg_2`, `ekg_aufnahme`, `belastungs_ekg`, `lufu`, `bga`, `ukg`, `abdomensono_kurz`, `abdomensono_lang`, `befund_ueberschriften` |
+| Prozeduren | 4 | `aszitespunktion`, `pleurapunktion`, `zvk_anlage`, `thoraxdrainage` |
+| Procedere | 7 | `proc_nierenretention`, `proc_ldl70`, `proc_kontrollkoro`, `proc_hk_termin`, `proc_heparin_bridging`, `proc_amiodaron`, `proc_prednisolon` |
 
 | ID | Baustein | Felder (Auswahl) | Typ |
 | --- | --- | --- | --- |
@@ -711,8 +721,49 @@ Einfügemechanismus.
 | Singular/Plural | keine | Bedingung auf Zahlenfeldern |
 | Wiederholgruppen (Diagnosen, Stents, Vorbehandlungen, Metastasen, Tumormarker, Medikation) | keine | `{{#each}}` + Listen-UI mit Hinzufügen/Entfernen/Sortieren |
 | Saubere Interpunktion bei leeren Optionalwerten | keine | Cleanup-Stufe nach dem Rendern |
-| Bausteinbibliothek (21 Blöcke) | keine | eigene Bibliothek + Einfügefunktion |
+| Bausteinbibliothek (25 Blöcke) | keine | eigene Bibliothek + Einfügefunktion |
 | Manuelle Nachbearbeitung des Briefs | Felder `readonly` | editierbare Ausgabe + Dirty-Tracking |
 | Editor: anlegen/duplizieren/löschen/exportieren | nur überschreiben | vollständiges CRUD + Validierung |
 | XSS-Sicherheit | `innerHTML` mit Daten | DOM-API + CSP |
 | Tests | keine | `node:test`-Suite |
+
+---
+
+## 6. Abnahme (Phase E)
+
+Die Matrix ist maschinell abgesichert. `tests/templates.test.js` prüft gegen
+genau diese Tabelle und schlägt fehl, sobald eine Vorlage, ein Baustein oder
+eine Belegstelle verloren geht.
+
+| Anforderung aus Abschnitt 5 | Prüfung | Ergebnis |
+| --- | --- | --- |
+| 23 Vorlagen vorhanden | Abgleich der ID-Liste gegen `ERWARTETE_VORLAGEN` | ✅ 23/23 |
+| bis zu 9 Abschnitte je Brief | Vorlagen führen 2–9 Abschnitte, IDs eindeutig | ✅ |
+| 11 Feldtypen | alle in `FIELD_TYPES` implementiert und gerendert | ✅ |
+| konditionale Absätze | Score-Schwelle, PFA/PPI, STEMI/CK, „Nur Vorhofflattern", TAA-Verlaufsabsätze, 4 Abklärungswege der hypertensiven Krise | ✅ je eigener Test |
+| genusabhängige Formulierungen | „Herr/Frau", „Herrn", „sein/ihr", „der Patient/die Patientin" | ✅ |
+| Singular/Plural | „Implantation eines DE-Stents" vs. „3 DE-Stents" | ✅ |
+| Wiederholgruppen | Vordiagnosen, Vorbehandlungen, Medikation, Metastasen, Tumormarker, Procedere | ✅ |
+| saubere Interpunktion | kein `{{`, kein `()`, kein ` ,`, keine Doppelleerzeile, kein leerer Aufzählungspunkt – in allen 23 Vorlagen, auch bei komplett leerer Eingabe | ✅ |
+| Bausteinbibliothek | 25 Bausteine, Kategorienverteilung festgeschrieben | ✅ |
+| manuelle Nachbearbeitung | manueller Text bleibt bei Maskenänderung erhalten und wird als veraltet markiert | ✅ |
+| Import/Export | Rundlauf identisch, fehlerhafte Vorlagen einzeln abgelehnt, Kollisionen erkannt, Fremdfelder verworfen | ✅ |
+| Platzhalterabdeckung | Schema-Validierung meldet jeden Platzhalter ohne Feld – alle 23 Vorlagen laufen **ohne Fehler und ohne Hinweise** durch | ✅ |
+
+**Bewusst nicht übernommen** (kein Beleg in den Quelldokumenten): `lifevest`
+sowie die Verfahren M-TEER und T-TEER aus dem nie eingebundenen
+`templates.js`.
+
+**Bewusst quellentreu belassen**, obwohl die beiden Dokumente sich
+unterscheiden:
+
+| Sachverhalt | `Musterarztbriefe_Med._I.docx` | `Textbausteine_Kardio.docx` |
+| --- | --- | --- |
+| Ziel-LDL | `<55mg/dl` | `< 70 mg/dl` |
+| Thrombozytenaggregationshemmer | „ASS" | „Aspirin" |
+| Kontaktangabe | – | „Chefarztsekreteriat" (Schrittmacher) vs. „Chefarztsekretariat" (CRT-D) |
+
+Ebenso unverändert übernommen wurden die Schreibweisen „community-aquired",
+„Perfusore", „nierdemolekulares Heparin", „Phächromozytoms" und
+„Cavotriksupidalen" – eine stillschweigende Korrektur würde die Vorlagen von
+ihrer Quelle entkoppeln.
