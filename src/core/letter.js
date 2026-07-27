@@ -3,7 +3,7 @@
  */
 
 import { render } from '../engine/renderer.js';
-import { cleanupText, joinSections } from '../engine/cleanup.js';
+import { joinSections } from '../engine/cleanup.js';
 import { evaluateCondition } from '../engine/expression.js';
 import { isEmpty } from '../engine/values.js';
 import { withDerivedValues } from './derived.js';
@@ -37,7 +37,7 @@ export function generateLetter(template, values, sharedGroupsById, options = {})
     if (!section.enabled) continue;
     if (!isVisible(section, data)) continue;
 
-    const manualText = manualSections.get(section.id);
+    const manualEntry = manualSections.get(section.id);
     const result = render(section.template, data);
     for (const message of result.errors) {
       const prefixed = `${section.title}: ${message}`;
@@ -45,16 +45,20 @@ export function generateLetter(template, values, sharedGroupsById, options = {})
     }
 
     const generated = result.text;
-    const isManual = manualText !== undefined && manualText !== null;
+    const isManual = Boolean(manualEntry);
 
     sections.push({
       id: section.id,
       title: section.title,
-      text: isManual ? manualText : generated,
+      text: isManual ? manualEntry.text : generated,
       generatedText: generated,
       manual: isManual,
-      /** Weicht der manuelle Text inzwischen von der Neugenerierung ab? */
-      outdated: isManual && cleanupText(manualText) !== generated,
+      /**
+       * Die Vorlage bzw. die Eingaben haben sich geaendert, seit der Abschnitt
+       * von Hand bearbeitet wurde – die manuelle Fassung ist also nicht mehr
+       * auf dem aktuellen Stand.
+       */
+      outdated: isManual && manualEntry.basedOn !== generated,
       empty: generated.trim() === '',
     });
   }

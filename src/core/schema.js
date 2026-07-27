@@ -85,9 +85,17 @@ export function normaliseField(raw) {
   return field;
 }
 
+/**
+ * Sortierrang einer Feldgruppe in der Maske. Gemeinsame Gruppen bringen
+ * ihren Rang mit (Stammdaten 10 … Procedere 90); vorlageneigene Gruppen
+ * liegen standardmaessig dazwischen, direkt nach den Stammdaten.
+ */
+export const DEFAULT_GROUP_ORDER = 50;
+
 export function normaliseFieldGroup(raw, index) {
   return {
     id: String(raw?.id ?? `gruppe_${index + 1}`).trim(),
+    order: Number.isFinite(Number(raw?.order)) ? Number(raw.order) : DEFAULT_GROUP_ORDER,
     title: String(raw?.title ?? `Gruppe ${index + 1}`).trim(),
     description: raw?.description ? String(raw.description) : '',
     visibleIf: raw?.visibleIf ? String(raw.visibleIf) : '',
@@ -137,13 +145,21 @@ export function normaliseTemplate(raw) {
  * @param {Map<string, object>} sharedGroupsById
  */
 export function resolveFieldGroups(template, sharedGroupsById) {
+  const referenced = new Set(template.sharedGroups || []);
   const groups = [];
-  for (const groupId of template.sharedGroups || []) {
-    const shared = sharedGroupsById?.get(groupId);
-    if (shared) groups.push(shared);
+
+  for (const [groupId, group] of sharedGroupsById ?? []) {
+    if (referenced.has(groupId)) groups.push(group);
   }
   for (const group of template.fieldGroups || []) groups.push(group);
-  return groups;
+
+  // Klinische Reihenfolge: Stammdaten und Aufenthalt zuerst, danach die
+  // fallspezifischen Gruppen der Vorlage, zuletzt die Standardbloecke bis
+  // hin zum Procedere. Bei gleichem Rang bleibt die Eingabereihenfolge.
+  return groups
+    .map((group, index) => ({ group, index }))
+    .sort((a, b) => (a.group.order - b.group.order) || (a.index - b.index))
+    .map((entry) => entry.group);
 }
 
 /** Flache Liste aller Felder eines Templates. */

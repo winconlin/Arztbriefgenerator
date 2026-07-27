@@ -51,7 +51,7 @@ export const SNIPPETS = [
     id: 'lz_rr',
     title: 'Langzeit-RR',
     category: 'Technische Befunde',
-    text: `Langzeit-RR vom {{befund_datum | date}}:
+    text: `Langzeit-RR vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 Gesamtdurchschnitt: xx/xx mmHg
 Max. syst. xx mmHg, Max. diast. xx mmHg.
 Tagesintervall: durchschn. xx/xx mmHg, Messungen über 135mmHg syst: x,x%, über 85mmHg diastolisch: x,x%
@@ -62,7 +62,7 @@ Gestörte Tag-/Nachtabsenkung (Non-dipper), CAVE: Krankenhausmessung`,
     id: 'lz_ekg',
     title: 'Langzeit-EKG (Variante 1)',
     category: 'Technische Befunde',
-    text: `Langzeit-EKG vom {{befund_datum | date}}:
+    text: `Langzeit-EKG vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 Zugrundeliegendes Vorhofflimmern/Zugrundeliegender Sinusrhythmus, HF im Mittel xx/min, HF-Spektrum von min xx/min bis max xx/min, keine SVTs/VTs, keine Pausen > 2,5s, keine relevanten Bradykardien, wenige VES/SVES`,
   },
   {
@@ -83,14 +83,14 @@ SR/VHF, HF /min, XT, R/S-Umschlag in V / V, keine signifikanten ERBS`,
     id: 'belastungs_ekg',
     title: 'Belastungs-EKG',
     category: 'Technische Befunde',
-    text: `Belastungs-EKG vom {{befund_datum | date}}:
+    text: `Belastungs-EKG vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 Abbruch wegen peripherer Erschöpfung, Belastung bis XX Watt, max. HF xx/min, max. RR XX mmHg, adäquate HF-/RR-Veränderung, keine AP-Beschwerden, keine signifikanten ST-Streckenveränderungen, isolierte VES/SVES. Normaler Belastungstest/positiver Belastungstest - Ischämie möglich`,
   },
   {
     id: 'lufu',
     title: 'Lungenfunktionsdiagnostik',
     category: 'Technische Befunde',
-    text: `Lungenfunktionsdiagnostik vom {{befund_datum | date}}:
+    text: `Lungenfunktionsdiagnostik vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 FEV1  l (%), FEV1/VC max %, MEF 50  l (%), R eff   kPa*s/l,
 TLC  l (%), RV/TLC %.
 Bodyplethysmographisch  Obstruktion und  Blähung.
@@ -155,21 +155,21 @@ Sonstiges: Beidseits kein Pleuraerguss.`,
     id: 'befund_ueberschriften',
     title: 'Befundüberschriften (leer)',
     category: 'Technische Befunde',
-    text: `Transthorakale Echokardiographie vom {{befund_datum | date}}:
+    text: `Transthorakale Echokardiographie vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Transösophageale Echokardographie vom {{befund_datum | date}}:
+Transösophageale Echokardographie vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Koronarangiographie vom {{befund_datum | date}}:
+Koronarangiographie vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Röntgen-Thorax vom {{befund_datum | date}}:
+Röntgen-Thorax vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Röntgen-Nasennebenhöhlen vom {{befund_datum | date}}:
+Röntgen-Nasennebenhöhlen vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Abdomensonographie vom {{befund_datum | date}}:
+Abdomensonographie vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Duplexsonographie der Carotiden vom {{befund_datum | date}}:
+Duplexsonographie der Carotiden vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 
-Schellong-Test vom {{befund_datum | date}}:`,
+Schellong-Test vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:`,
     note: 'Leere Überschriften wie im Original – zum manuellen Befüllen.',
   },
 
@@ -178,14 +178,14 @@ Schellong-Test vom {{befund_datum | date}}:`,
     id: 'aszitespunktion',
     title: 'Aszitespunktion',
     category: 'Prozeduren',
-    text: `Aszitespunktion vom {{befund_datum | date}}:
+    text: `Aszitespunktion vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 Nach ausführlicher Patientenaufklärung, unter sterilen Bedingungen und sonographischer Kontrolle, Punktion und komplikationslose Drainage von insgesamt  l bernsteinfarbenen Sekret. Substitution von  ml Humanalbumin 20%. Klinische Chemie, zytologische und mikrobiologische Untersuchung veranlasst.`,
   },
   {
     id: 'pleurapunktion',
     title: 'Sonographie Pleura mit Punktion',
     category: 'Prozeduren',
-    text: `Sonographie Pleura mit Punktion vom {{befund_datum | date}}:
+    text: `Sonographie Pleura mit Punktion vom {{befund_datum | date | fallback:"XX.XX.XXXX"}}:
 Nach ausführlicher Patientenaufklärung, komplikationslose sonographiegesteuerte Pleurapunktion rechts unter sterilen Bedingungen. Ca.  ml trübe, gelbliche Flüssigkeit gewonnen. Röntgen-Thorax veranlasst.
 Klinische Chemie, zytologische und mikrobiologische Untersuchung veranlasst.`,
   },
@@ -230,7 +230,7 @@ Röntgen-Thorax-Kontrolle empfohlen. Festes analgetisches Regime mit z.B. 4x 30 
     id: 'proc_hk_termin',
     title: 'Termin Herzkatheteruntersuchung',
     category: 'Procedere',
-    text: '- Termin für Herzkatheteruntersuchung am {{befund_datum | date}} um 7.30 Uhr auf Station XX (Bitte mit Überweisungsschein und aktuellem Labor)',
+    text: '- Termin für Herzkatheteruntersuchung am {{befund_datum | date | fallback:"XX.XX.XXXX"}} um 7.30 Uhr auf Station XX (Bitte mit Überweisungsschein und aktuellem Labor)',
   },
   {
     id: 'proc_heparin_bridging',
@@ -248,7 +248,7 @@ Röntgen-Thorax-Kontrolle empfohlen. Festes analgetisches Regime mit z.B. 4x 30 
     id: 'proc_prednisolon',
     title: 'Prednisolon-Ausschleichschema',
     category: 'Procedere',
-    text: '- Prednisolon 25mg z. B. Decortin H 1-0-0 bis einschließlich {{befund_datum | date}}, dann wöchentliche Dosisreduktion zunächst auf 12,5mg, dann 7,5mg, dann in 2,5mg-Schritten ausschleichen und absetzen.',
+    text: '- Prednisolon 25mg z. B. Decortin H 1-0-0 bis einschließlich {{befund_datum | date | fallback:"XX.XX.XXXX"}}, dann wöchentliche Dosisreduktion zunächst auf 12,5mg, dann 7,5mg, dann in 2,5mg-Schritten ausschleichen und absetzen.',
   },
 ];
 

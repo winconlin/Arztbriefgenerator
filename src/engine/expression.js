@@ -232,7 +232,9 @@ function evaluateNode(node, scope) {
     case 'or': return isTruthy(evaluateNode(node.left, scope)) || isTruthy(evaluateNode(node.right, scope));
     case 'not': return !isTruthy(evaluateNode(node.operand, scope));
     case 'empty': return isEmpty(evaluateNode(node.operand, scope));
-    case 'contains': return contains(evaluateNode(node.right, scope), evaluateNode(node.left, scope));
+    // Konvention: node.left ist die Menge/der Text, node.right der gesuchte
+    // Wert – sowohl fuer "liste contains wert" als auch fuer "wert in liste".
+    case 'contains': return contains(evaluateNode(node.left, scope), evaluateNode(node.right, scope));
     case 'compare': return compare(evaluateNode(node.left, scope), evaluateNode(node.right, scope), node.operator);
     default: throw new ExpressionError(`Unbekannter Knotentyp "${node.kind}"`);
   }

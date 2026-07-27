@@ -32,6 +32,7 @@ export const P2Y12 = ['Clopidogrel', 'Prasugrel', 'Ticagrelor'];
 const RAW_GROUPS = [
   {
     id: 'stammdaten',
+    order: 10,
     title: 'Patientenstammdaten',
     description: 'Steuert zugleich die geschlechtsabhängigen Formulierungen („sein/ihr", „der Patient/die Patientin").',
     fields: [
@@ -53,6 +54,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'aufenthalt',
+    order: 20,
     title: 'Aufenthalt',
     fields: [
       { key: 'aufnahme_datum', label: 'Aufnahmedatum', type: 'date', required: true },
@@ -74,6 +76,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'risikofaktoren',
+    order: 60,
     title: 'Kardiovaskuläre Risikofaktoren',
     description: 'Belegstelle: Textbausteine_Kardio.docx, Kopfabschnitt.',
     fields: [
@@ -104,6 +107,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'vordiagnosen',
+    order: 62,
     title: 'Relevante Vordiagnosen',
     fields: [
       {
@@ -120,6 +124,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'anamnese_untersuchung',
+    order: 64,
     title: 'Anamnese und Untersuchung',
     fields: [
       { key: 'anamnese', label: 'Anamnese', type: 'multiline', rows: 5, help: 'Freitext; Bausteine über die Bausteinbibliothek einfügbar.' },
@@ -155,6 +160,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'befunde',
+    order: 66,
     title: 'Befunde',
     fields: [
       {
@@ -171,6 +177,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'therapieempfehlung',
+    order: 80,
     title: 'Therapieempfehlung',
     fields: [
       {
@@ -191,6 +198,7 @@ const RAW_GROUPS = [
   },
   {
     id: 'procedere_frei',
+    order: 90,
     title: 'Procedere – zusätzliche Zeilen',
     fields: [
       {

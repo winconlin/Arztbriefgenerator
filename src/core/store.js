@@ -154,11 +154,20 @@ export function createStore({ builtinTemplates = [], sharedGroups = [] } = {}) {
     },
 
     /* Manuelle Nachbearbeitung der Ausgabe */
-    getManualText(sectionId) { return state.manualSections.get(sectionId) ?? null; },
+    getManualEntry(sectionId) { return state.manualSections.get(sectionId) ?? null; },
+    getManualSections() { return new Map(state.manualSections); },
     hasManualEdits() { return state.manualSections.size > 0; },
     listManualSections() { return [...state.manualSections.keys()]; },
-    setManualText(sectionId, text) {
-      state.manualSections.set(sectionId, text);
+    /**
+     * @param {string} sectionId
+     * @param {string} text     der von Hand bearbeitete Text
+     * @param {string} basedOn  der generierte Text, auf dem die Bearbeitung
+     *                          beruht – daran wird erkannt, ob die Vorlage
+     *                          sich seither geaendert hat
+     */
+    setManualText(sectionId, text, basedOn) {
+      const existing = state.manualSections.get(sectionId);
+      state.manualSections.set(sectionId, { text, basedOn: basedOn ?? existing?.basedOn ?? '' });
       notify('manual');
     },
     discardManualText(sectionId) {

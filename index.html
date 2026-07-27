@@ -3,64 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Datenschutz und Sicherheit:
+    Die Content-Security-Policy verbietet jede Netzwerkverbindung. Damit kann
+    die Anwendung – auch bei einem Fehler oder einer manipulierten Vorlage –
+    keine Patientendaten nach außen senden. Erlaubt sind ausschließlich
+    Skripte und Stile aus diesem Ordner.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self';
+    style-src 'self';
+    img-src 'self' data:;
+    font-src 'self';
+    connect-src 'none';
+    form-action 'none';
+    frame-src 'none';
+    object-src 'none';
+    base-uri 'none';
+  " />
+  <meta name="referrer" content="no-referrer" />
   <title>Arztbriefgenerator</title>
+  <!-- Leeres Favicon, damit der Browser keine zusätzliche Anfrage stellt. -->
+  <link rel="icon" href="data:," />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <h1>Arztbriefgenerator</h1>
-    <div class="tabs">
-      <button id="tab-generator" class="tab active">Arztbriefgenerator</button>
-      <button id="tab-editor" class="tab">Template Editor</button>
+    <div class="topbar-main">
+      <h1>Arztbriefgenerator</h1>
+      <p class="topbar-note">Läuft vollständig offline im Browser. Es werden keine Daten übertragen.</p>
     </div>
+    <nav class="tabs" role="tablist" aria-label="Ansicht">
+      <button id="tab-generator" class="tab is-active" role="tab" aria-selected="true" aria-controls="ansicht-generator" type="button">Brief erstellen</button>
+      <button id="tab-editor" class="tab" role="tab" aria-selected="false" aria-controls="ansicht-editor" type="button">Vorlagen-Editor</button>
+    </nav>
   </header>
 
-  <main id="view-generator" class="layout">
-    <section class="card controls">
-      <label>Template</label>
-      <select id="scenario"></select>
-      <form id="field-form"></form>
-      <div class="actions"><button id="generate" type="button">Text aktualisieren</button><button id="copy-all" type="button" class="secondary">Alles kopieren</button></div>
-    </section>
-    <section class="card output">
-      <h3>Diagnosen</h3><textarea id="diagnosen" rows="6" readonly></textarea>
-      <h3>Epikrise</h3><textarea id="epikrise" rows="12" readonly></textarea>
-      <h3>Procedere</h3><textarea id="procedere" rows="8" readonly></textarea>
-    </section>
-  </main>
+  <p id="statusleiste" class="statusbar" role="status" aria-live="polite" hidden></p>
 
-  <main id="view-editor" class="hidden">
-    <section class="card">
-      <h2>Template Editor (einfach)</h2>
-      <label>Template-ID</label><input id="template-id" placeholder="z.B. acs_v2" />
-      <label>Template-Titel</label><input id="template-title" placeholder="z.B. ACS Hausstandard" />
+  <noscript>
+    <p class="banner banner-error">Für diesen Generator wird JavaScript benötigt. Es werden dabei keine Daten übertragen – die gesamte Verarbeitung findet in Ihrem Browser statt.</p>
+  </noscript>
 
-      <h3>Template-Texte</h3>
-      <label>Diagnosen</label><textarea id="tpl-diagnosen" rows="5"></textarea>
-      <label>Epikrise</label><textarea id="tpl-epikrise" rows="8"></textarea>
-      <label>Procedere</label><textarea id="tpl-procedere" rows="6"></textarea>
-
-      <h3>Variable hinzufügen</h3>
-      <div class="editor-grid">
-        <div><label>Name (Key)</label><input id="var-key" placeholder="z.B. p2y12" /></div>
-        <div><label>Anzeigename</label><input id="var-label" placeholder="z.B. P2Y12-Hemmer" /></div>
-        <div><label>Typ</label><select id="var-type"><option>text</option><option>number</option><option>select</option><option>date</option><option>boolean</option><option>multiline</option></select></div>
-        <div><label>Position im Generator</label><select id="var-position"><option value="diagnosen">Diagnosen</option><option value="epikrise">Epikrise</option><option value="procedere">Procedere</option></select></div>
-        <div><label>Sortierung (1..n)</label><input id="var-order" type="number" value="1" /></div>
-        <div><label>Default / Beispiel</label><input id="var-default" /></div>
-        <div class="full"><label>Optionen für Dropdown (Komma-getrennt)</label><input id="var-options" placeholder="Clopidogrel,Prasugrel,Ticagrelor" /></div>
+  <main id="ansicht-generator" class="layout" role="tabpanel" aria-labelledby="tab-generator">
+    <section class="card controls" aria-label="Eingaben">
+      <div class="card-head">
+        <div class="field">
+          <label for="vorlage">Vorlage</label>
+          <select id="vorlage"></select>
+        </div>
+        <div id="vorlage-info" class="template-info"></div>
       </div>
+
+      <form id="eingabemaske" autocomplete="off" novalidate></form>
+
       <div class="actions">
-        <button id="insert-var" type="button">Variable in aktives Textfeld einfügen</button>
-        <button id="save-var" type="button">Variable speichern</button>
-        <button id="save-template" type="button">Template speichern</button>
-        <button id="export-all" type="button" class="secondary">Alle Templates exportieren</button>
-        <label class="secondary import-label">Alle Templates importieren<input id="import-all" type="file" accept="application/json" /></label>
+        <button id="eingaben-zuruecksetzen" type="button" class="secondary">Eingaben zurücksetzen</button>
       </div>
-      <details><summary>Variablen-Tabelle anzeigen</summary><div id="var-table"></div></details>
+
+      <details class="settings">
+        <summary>Einstellungen und Datenschutz</summary>
+        <div class="checkbox-row">
+          <input id="einstellung-livevorschau" type="checkbox" />
+          <label for="einstellung-livevorschau">Vorschau bei jeder Eingabe aktualisieren</label>
+        </div>
+        <div class="checkbox-row">
+          <input id="einstellung-ueberschriften" type="checkbox" />
+          <label for="einstellung-ueberschriften">Abschnittsüberschriften in „Alles kopieren" übernehmen</label>
+        </div>
+        <div class="checkbox-row">
+          <input id="einstellung-eingaben-merken" type="checkbox" />
+          <label for="einstellung-eingaben-merken">Eingaben lokal zwischenspeichern (standardmäßig aus)</label>
+        </div>
+        <p class="help">
+          Ohne diese Option werden Patienteneingaben ausschließlich im Arbeitsspeicher gehalten und beim Schließen des
+          Fensters verworfen. Gespeichert werden dann nur die Vorlagen selbst.
+        </p>
+        <div class="actions">
+          <button id="alles-loeschen" type="button" class="secondary danger">Alle lokal gespeicherten Daten löschen</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="card output" aria-label="Generierter Brief">
+      <div class="card-head output-head-main">
+        <h2>Brief</h2>
+        <div class="actions">
+          <button id="aktualisieren" type="button">Text aktualisieren</button>
+          <button id="bausteine-oeffnen" type="button" class="secondary">Textbausteine …</button>
+          <button id="alles-kopieren" type="button" class="secondary">Alles kopieren</button>
+        </div>
+      </div>
+      <div id="ausgabe-status"></div>
+      <div id="ausgabe"></div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <main id="ansicht-editor" class="layout layout-editor" role="tabpanel" aria-labelledby="tab-editor" hidden>
+    <section class="card" aria-label="Vorlagen">
+      <h2>Vorlagen</h2>
+      <div id="vorlagenliste"></div>
+    </section>
+    <section class="card" aria-label="Vorlage bearbeiten">
+      <h2>Vorlage bearbeiten</h2>
+      <div id="vorlageneditor"></div>
+    </section>
+  </main>
+
+  <dialog id="bausteine-dialog" class="dialog" aria-label="Textbausteine">
+    <div class="dialog-head">
+      <h2>Textbausteine</h2>
+      <button id="bausteine-schliessen" type="button" class="secondary small">Schließen</button>
+    </div>
+    <div class="dialog-controls">
+      <div class="field">
+        <label for="bausteine-suche">Suchen</label>
+        <input id="bausteine-suche" type="search" placeholder="z. B. Langzeit-EKG" />
+      </div>
+      <div class="field">
+        <label for="bausteine-ziel">Einfügen in Abschnitt</label>
+        <select id="bausteine-ziel"></select>
+      </div>
+    </div>
+    <div id="bausteine-liste" class="dialog-body"></div>
+  </dialog>
+
+  <footer class="footer">
+    <p>
+      Die Vorlagen stammen unverändert aus <code>Musterarztbriefe_Med._I.docx</code> und
+      <code>Textbausteine_Kardio.docx</code>. Der generierte Text ist ein Entwurf und vor der Verwendung
+      ärztlich zu prüfen.
+    </p>
+  </footer>
+
+  <script type="module" src="src/main.js"></script>
 </body>
 </html>
