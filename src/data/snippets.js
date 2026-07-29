@@ -215,10 +215,10 @@ Röntgen-Thorax-Kontrolle empfohlen. Festes analgetisches Regime mit z.B. 4x 30 
     text: '- Regelmäßige Nierenretentionsparameter- und Elektrolytkontrollen unter diuretischer Therapie',
   },
   {
-    id: 'proc_ldl70',
-    title: 'Risikofaktoren, Ziel-LDL < 70 mg/dl',
+    id: 'proc_ldl55',
+    title: 'Risikofaktoren, Ziel-LDL < 55 mg/dl',
     category: 'Procedere',
-    text: '- Optimale Kontrolle und Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel LDL < 70 mg/dl',
+    text: '- Optimale Kontrolle und Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel LDL < 55 mg/dl',
   },
   {
     id: 'proc_kontrollkoro',
