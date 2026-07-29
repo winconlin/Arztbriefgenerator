@@ -126,11 +126,11 @@ Chronisches Koronarsyndrom bei X-Gefäßerkrankung
 
 Epikrise
 X stellte sich mit Belastungsdyspnoe/ dekompensierter Herzinsuffizienz stationär vor. Echokardiographisch imponiert eine hochgradige Aortenklappenstenose (KÖF 0,Xcm²), angesichts der Symptome/ eingeschränkten Linksventrikulären Funktion stellt sich die Indikation zum Aortenklappenersatz. Die weiteren OP-Vorbereitungen wurden wie obenstehend durchgeführt, angesichts des fortgeschrittenen Patientenalters/der ausgeprägten Komorbiditäten (Frailty-Syndrom) wurde die Indikation zum interventionellen Klappenersatz gestellt. Koronarangiographisch zeigt sich eine X-Gefäßerkrankung mit….
-Eine ambulante TAVI-CT wurde im Radiologischen Zentrum Rosenheim wie untenstehend vereinbart. Ein Termin im Deutschen Herzzentrum München zur Heart-Team-Vorstellung und ggf. TAVI wird durch uns vereinbart und X telefonisch mitgeteilt.
+Eine ambulante TAVI-CT wurde im Radiologischen Zentrum wie untenstehend vereinbart. Ein Termin im Deutschen Herzzentrum München zur Heart-Team-Vorstellung und ggf. TAVI wird durch uns vereinbart und X telefonisch mitgeteilt.
 Wir entlassen X am XX.XX. in stabilem/gutem Allgemeinzustand in sein/ihr häusliches Umfeld und ihre weitere fachärztliche Betreuung.
 
 Procedere
-- Ambulantes TAVI-CT am radiologischen Zentrum Rosenheim am XX.XX.20XX
+- Ambulantes TAVI-CT am radiologischen Zentrum  am XX.XX.20XX
 - Terminmitteilung am Deutschen Herzzentrum München erfolgt durch unser Sekretariat
 
 Schrittmacherimplantation
@@ -147,7 +147,7 @@ Die orale Antikoagulation sollte für X Tage nach Implantation pausiert werden.
 Wir entlassen X am XX.XX. in gutem Allgemeinzustand in sein/ihr häusliches Umfeld und ihre weitere fachärztliche Betreuung.
 
 Procedere
-- Wiedervorstellung zur Erstkontrolle in unserer Schrittmacherambulanz am xx.xx.24, xx.xx Uhr; bitte Überweisungsschein ausstellen
+- Wiedervorstellung zur Erstkontrolle in unserer Schrittmacherambulanz am xx.xx.XXXX, xx.xx Uhr; bitte Überweisungsschein ausstellen
 - Wiederbeginn OAK ab xx.xx
 ```
 
@@ -173,14 +173,14 @@ Abdomen: weich, regelrechte Darmgeräusche über allen vier Quadranten auskultie
 -jähriger Patient in gutem Allgemein- und normalem Ernährungszustand (Größe cm, Gewicht kg). Cor: auskultatorisch rein, rhythmisch; Pulmo: vesikuläres Atemgeräusch, keine Rasselgeräusche; Fuß- und Leistenpulse gut tastbar, keine Jugularvenenstauung; keine peripheren Ödeme; keine Zyanose; Abdomen: weich, kein Druckschmerz, keine Resistenzen; neurologisch orientierend kein fokal-neurologisches Defizit.
 
 Technische Befunde
-Langzeit-RR vom XX.08.2018:
+Langzeit-RR vom XX.XX.XXXX:
 Gesamtdurchschnitt: xx/xx mmHg
 Max. syst. xx mmHg, Max. diast. xx mmHg.
 Tagesintervall: durchschn. xx/xx mmHg, Messungen über 135mmHg syst: x,x%, über 85mmHg diastolisch: x,x%
 Nachtintervall: durchschn. xx/xx mmHg, Messungen über 125mmHg: x,x%, über 80mmHg diastolisch: x,x%
 Gestörte Tag-/Nachtabsenkung (Non-dipper), CAVE: Krankenhausmessung
 
-Langzeit-EKG vom XX.08.2018:
+Langzeit-EKG vom XX.XX.XXXX:
 Zugrundeliegendes Vorhofflimmern/Zugrundeliegender Sinusrhythmus, HF im Mittel xx/min, HF-Spektrum von min xx/min bis max xx/min, keine SVTs/VTs, keine Pausen > 2,5s, keine relevanten Bradykardien, wenige VES/SVES
 
 durchgehender Sinusrhythmus, Herzfrequenz durchschnittlich 78/min (Min 59/min - Max 111/min)
@@ -189,20 +189,20 @@ Supraventrikuläre Extrasystolie, supraventrikuläre Runs, einzelne VES, keine r
 EKG bei Aufnahme:
 SR/VHF, HF /min, XT, R/S-Umschlag in V / V, keine signifikanten ERBS
 
-EKG vom XX.08.2018:
+EKG vom XX.XX.XXXX:
 SR/VHF, HF /min, XT, R/S-Umschlag in V / V, keine signifikanten ERBS
 
-Belastungs-EKG vom xx.08.2018:
+Belastungs-EKG vom XX.XX.XXXX:
 Abbruch wegen peripherer Erschöpfung, Belastung bis XX Watt, max. HF xx/min, max. RR XX mmHg, adäquate HF-/RR-Veränderung, keine AP-Beschwerden, keine signifikanten ST-Streckenveränderungen, isolierte VES/SVES. Normaler Belastungstest/positiver Belastungstest - Ischämie möglich
 
-Röntgen-Nasennebenhöhlen vom XX.08.2018:
-Transthorakale Echokardiographie vom XX.08.2018:
+Röntgen-Nasennebenhöhlen vom XX.XX.XXXX:
+Transthorakale Echokardiographie vom XX.XX.XXXX:
 
-Transösophageale Echokardographie vom XX.08.2018:
+Transösophageale Echokardographie vom XX.XX.XXXX:
 
-Koronarangiographie vom XX.08.2018:
+Koronarangiographie vom XX.XX.XXXX:
 
-Lungenfunktionsdiagnostik vom XX.08.2018:
+Lungenfunktionsdiagnostik vom XX.XX.XXXX:
 FEV1  l (%), FEV1/VC max %, MEF 50  l (%), R eff   kPa*s/l,
 TLC  l (%), RV/TLC %.
 Bodyplethysmographisch  Obstruktion und  Blähung.
@@ -217,26 +217,26 @@ pH |  | pCO2 |  | mmHg | pO2 |  | mmHg | BE |  | mmol/l | HCO3 |  | mmol/l
 Sauerstoffsättigung  %.
 Beurteilung: Normoxämie?, Normokapnie?. Azidose? Metabolisch? Resp.?
 
-Röntgen-Thorax vom XX.08.2018:
+Röntgen-Thorax vom XX.XX.XXXX:
 
-Abdomensonographie vom XX.08.2018:
+Abdomensonographie vom XX.XX.XXXX:
 
-Duplexsonographie der Carotiden vom XX.08.2018:
+Duplexsonographie der Carotiden vom XX.XX.XXXX:
 
-Schellong-Test vom XX.08.2018:
-Aszitespunktion vom XX.08.2018:
+Schellong-Test vom XX.XX.XXXX:
+Aszitespunktion vom XX.XX.XXXX:
 Nach ausführlicher Patientenaufklärung, unter sterilen Bedingungen und sonographischer Kontrolle, Punktion und komplikationslose Drainage von insgesamt  l bernsteinfarbenen Sekret. Substitution von  ml Humanalbumin 20%. Klinische Chemie, zytologische und mikrobiologische Untersuchung veranlasst.
 
-Sonographie Pleura mit Punktion vom XX.08.2018:
+Sonographie Pleura mit Punktion vom XX.XX.XXXX:
 Nach ausführlicher Patientenaufklärung, komplikationslose sonographiegesteuerte Pleurapunktion rechts unter sterilen Bedingungen. Ca.  ml trübe, gelbliche Flüssigkeit gewonnen. Röntgen-Thorax veranlasst.
 Klinische Chemie, zytologische und mikrobiologische Untersuchung veranlasst.
 
-Punktion eines Organs vom XX.08.2018:
+Punktion eines Organs vom XX.XX.XXXX:
 ZVK-Anlage
 Nach ausführlicher Patientenaufklärung und subkutaner Applikation von Lokalanästhetikum sonographiegesteuerte Anlage eines dreilumigen zentralen Venenkatheters unter sterilen Kautelen in die rechte/linke V. jugularis interna.
 Lagekontrolle mittels konventioneller Röntgen-Thorax-Aufnahme empfohlen.
 
-Punktion eines Organs vom XX.08.2018:
+Punktion eines Organs vom XX.XX.XXXX:
 Thoraxdrainageanlage
 Nach ausführlicher Patientenaufklärung und sonographischem Aufsuchen des Drainageortes, unter sterilen Kautelen Minithorakotomie, stumpfes Vorpräparieren und komplikationsloses Einbringen einer Thorax-Drainage (doppellumig 20 Cha) in der rechten/linken vorderen Axillarlinie. ca.   ml klaren Erguss im Schuss gewonnen, dann abgeklemmt.
 Klinische Chemie, zytologische und mikrobiologische Untersuchung veranlasst.
@@ -259,10 +259,10 @@ Körperlicher Untersuchungsbefund:
 Befunde:
 EKG bei Aufnahme:
 
-	Koronarangiographie vom XX.08.2018:
+	Koronarangiographie vom XX.XX.XXXX:
 
 Therapie & Verlauf:
-Die stationäre Aufnahme des Patienten erfolgte am xx.08.2018 zur elektiv geplanten Koronarangiographie bei … / bekannter koronarer … Erkrankung (mit ACVB Situation).
+Die stationäre Aufnahme des Patienten erfolgte am XX.XX.XXXX zur elektiv geplanten Koronarangiographie bei … / bekannter koronarer … Erkrankung (mit ACVB Situation).
 Koronarangiographisch zeigte sich , welche in gleicher Sitzung mittels PTCA/DES-Implantation versorgt wurde.
 Der postinterventionelle Verlauf gestaltete sich komplikationslos.
 Aufgrund der Stentimplantation empfehlen wir eine duale Plättchenhemmung mit Aspirin und Clopidogrel für 6/12 Monate, anschließend eine lebenslange Gabe von Aspirin.
@@ -270,7 +270,7 @@ Außerdem sollten regelmäßige echokardiographische Verlaufskontrollen erfolgen
 Wir empfehlen die konsequente Therapie kardiovaskulärer Risikofaktoren mit Ziel LDL-Cholesterin < 70 mg/dl.
 Die linke/rechte Leisten-/Radialisregion war nach Punktion im Rahmen der Koronarangiographie zuletzt palpatorisch und auskultatorisch unauffällig und reizlos bei geringem lokalem Hämatom.
 
-Am xx.08.2018 konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
+Am XX.XX.XXXX konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -281,7 +281,7 @@ Procedere:
 Akutes Koronarsyndrom
 
 Aktuelle Diagnosen:
-- N/STEMI der Vorder-/Hinterwand bei Verschluss der LAD/RCX/RCA am XX.08.2018
+- N/STEMI der Vorder-/Hinterwand bei Verschluss der LAD/RCX/RCA am XX.XX.XXXX
   - PTCA/DES-Implantation
 
 	Kardiovaskuläre Risikofaktoren:
@@ -305,7 +305,7 @@ Aufgrund der Stentimplantation empfehlen wir eine duale Plättchenhemmung mit AS
 Wir empfehlen eine kardiologische Anbindung mit regelmäßigen echokardiographischen Verlaufsbeurteilungen. Weiters bitten wir um eine optimale Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel-LDL < 70 mg/dl.
 Auf Wunsch des Patienten beantragten wir über unseren Sozialdienst eine kardiologische AHB. Über Zeit und Ort wird der Patient postalisch informiert.
 
-Am xx.08.2018 konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
+Am XX.XX.XXXX konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -319,7 +319,7 @@ Procedere:
 Schrittmacher
 
 Aktuelle Diagnose:
-Implantation eines 1-/2-Kammer-Schrittmachers (Firma/Aggregat: St.Jude Medical/Medtronic, Modus: XX, SN: XX) am XX.08.2018 bei symptomatischem AV-Block III° mit Kammerersatzrhythmus, Sick-Sinus-Syndrom mit Frequenzen bis xx/min und präsynkopalen Zuständen, sowie teils kurzen Tachyarrhythmien i.S. von paroxysmalem Vorhofflimmern.
+Implantation eines 1-/2-Kammer-Schrittmachers (Firma/Aggregat: St.Jude Medical/Medtronic, Modus: XX, SN: XX) am XX.XX.XXXX bei symptomatischem AV-Block III° mit Kammerersatzrhythmus, Sick-Sinus-Syndrom mit Frequenzen bis xx/min und präsynkopalen Zuständen, sowie teils kurzen Tachyarrhythmien i.S. von paroxysmalem Vorhofflimmern.
 
 	Kardiovaskuläre Risikofaktoren:
 
@@ -334,21 +334,21 @@ EKG bei Aufnahme:
 
 Therapie und Verlauf:
 Die stationäre Aufnahme des Patienten erfolgte zur Implantation eines Schrittmachers bei Nachweis eines symptomatischen Sick-Sinus-Syndroms mit Frequenzen bis xx/min und präsynkopalen Zuständen, sowie teils kurzen Tachyarrhythmien im Sinne von paroxysmalem Vorhofflimmern.
-Am xx.08.2018 erfolgte die komplikationslose Implantation eines Ein-/Zweikammerschrittmachers (Firma/Aggregat: St. Jude Medical/Medtronic, Modus: XX, SN: XX)
+Am xx.XX.XXXX erfolgte die komplikationslose Implantation eines Ein-/Zweikammerschrittmachers (Firma/Aggregat: St. Jude Medical/Medtronic, Modus: XX, SN: XX)
 Radiomorphologisch ergab sich im Röntgen-Thorax bei regelrechter Aggregat- und Sondenpositionierung kein Anhalt für einen Pneumothorax.
-In der Schrittmacherkontrolle vom xx.08.2018 zeigte sich eine regelrechte Funktion des Aggregats.  Der Patient hat am xx.09.2018 um xx.xx Uhr einen Termin zur ambulanten Vorstellung zur Schrittmacher-Kontrolle mit hausärztlicher Überweisung in unserer Schrittmacherambulanz (RoMed Klinikum Rosenheim, Medizinische Klinik I, Kardiologie, Tel. Chefarztsekreteriat 08031/365 3101).
+In der Schrittmacherkontrolle vom xx.XX.XXXX zeigte sich eine regelrechte Funktion des Aggregats.  Der Patient hat am xx.xx.XXXX um xx.xx Uhr einen Termin zur ambulanten Vorstellung zur Schrittmacher-Kontrolle mit hausärztlicher Überweisung in unserer Schrittmacherambulanz
 Ein Fahrverbot über 3/6/12 Monate/lebenslang ist aus medizinischer Sicht zwingend erforderlich. Ein Aggregat-Ausweis und eine Infobroschüre wurden dem Patienten ausgehändigt.
 Das Nahtmaterial sollte bei regelmäßiger Wundkontrolle und Verbandswechsel in ca. 8-10 Tagen entfernt werden.
 Für 5 Tage nach Schrittmacherimplantation ist eine Behandlung mit Antikoagulantien zu pausieren.
 
-Am xx.08.2018 entließen wir den Patienten in kardiopulmonal stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung und stehen für Rückfragen gerne zur Verfügung.
+Am XX.XX.XXXX entließen wir den Patienten in kardiopulmonal stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung und stehen für Rückfragen gerne zur Verfügung.
 
 Therapieempfehlung:
 
 Procedere
 - Nach regelmäßigen Wundkontrollen und Verbandswechsel, Entfernung des Nahtmaterials 8-10 Tage postoperativ.
 - Für 5 Tage nach Schrittmacherimplantation Antikoagulantien pausieren.
-- Schrittmacherkontrolle am XX.09.2018 in unserer Schrittmacherambulanz mit hausärztlicher Überweisung.
+- Schrittmacherkontrolle am XX.09.XXXX in unserer Schrittmacherambulanz mit hausärztlicher Überweisung.
 
 Kardiale Dekompensation
 
@@ -377,7 +377,7 @@ Im LZ-EKG stellte sich ein durchgehender Sinusrhythmus ohne höhergradige Rhythm
 Die dezente Troponin-T-Auslenkung ist im Rahmen der Dekompensation zu werten.
 Wir empfehlen tägliche Gewichtskontrollen und eine maximale tägliche Flüssigkeitszufuhr von 1,5 l.
 
-Am xx.08.2018 konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
+Am XX.XX.XXXX konnten wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung entlassen und stehen für Rückfragen gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -411,7 +411,7 @@ In der Echokardiographie zeigte sich eine verminderte linksventrikuläre Pumpfun
 Aufgrund von erhöhten Werten in der Langzeit-Blutdruckuntersuchung eskalierten wir die medikamentöse Blutdrucktherapie.
 Bei initial erhöhten Blutzuckerwerten erfolgte eine Diabetes- und Ernährungsberatung.
 
-Wir entlassen den Patienten am XX.08.2018  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
+Wir entlassen den Patienten am XX.XX.XXXX  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -444,7 +444,7 @@ Nach einer initialen Heparinisierung mittels Heparinperfusor stellten wir die An
 Bei einem unprovozierten Ereignis empfehlen wir eine Antikoagulation für insgesamt 3/6 Monate.
 Antithrombosestrümpfe der Klasse II wurden verordnet.
 
-Wir entlassen den Patienten am XX.08.2018  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
+Wir entlassen den Patienten am XX.XX.XXXX  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -474,7 +474,7 @@ Zum Ausschluss eines Phächromozytoms bestimmten wir die Metanephrine im Plasma,
 Eine Nierenarterienstenose konnte duplexsonographisch, bei eingeschränkter Beurteilbarkeit nicht sicher ausgeschlossen werden. Bei weiterem Verdacht auf sekundäre Hypertonie kann, in Abhängigkeit der Verlaufskontrolle der LZ-RR-Messung, diesbezüglich die Durchführung einer MRT-Angiographie im Verlauf erwogen werden.
 Zur Abklärung eines möglichen Hyperaldosteronismus wurden Aldosteron und Renin bestimmt. Hierbei zeigte sich ein erhöhter Aldosteron-Renin-Quotient, weshalb der Verdacht auf einen primären Hyperaldosteronismus besteht. Wir empfehlen die Durchführung eines Kochsalzbelastungstestes. Die Durchführung eines solchen wäre auch in unserer Abteilung möglich.
 
-Wir entlassen den Patienten am XX.08.2018  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
+Wir entlassen den Patienten am XX.XX.XXXX  in gutem Allgemeinzustand in Ihre geschätzte haus-und fachärztliche Weiterbetreuung und stehen bei Rückfragen jederzeit gerne zur Verfügung.
 
 Therapieempfehlung:
 
@@ -502,16 +502,16 @@ Therapie und Verlauf:
 Die stationäre Aufnahme des Patienten erfolgte aufgrund von Schwindel und präsynkopalen Ereignissen. Auskultatorisch zeigte sich ein Systolikum mit Punktum maximum im 2.ICR parasternal rechts ohne eindeutige Fortleitung.
 Echokardiographisch fand sich eine .
 Es besteht die Indikation zum operativen Klappenersatz, sodass wir eine Koronarangiographie durchführten. Hierbei zeigte sich
-Die aktuelle Situation, Krankheitsbild und das Procedere wurden mit dem Patienten ausführlich besprochen. Wir vereinbarten einen Aufnahmetermin in der Schön Klinik Vogtareuth am XX.08.2018 zur Klappenoperation am XX.08.2018.
+Die aktuelle Situation, Krankheitsbild und das Procedere wurden mit dem Patienten ausführlich besprochen. Wir vereinbarten einen Aufnahmetermin in der Schön Klinik Vogtareuth am XX.XX.XXXX zur Klappenoperation am XX.XX.XXXX.
 In den präoperativen Vorbereitungsuntersuchungen ergaben sich keine Kontraindikationen für den bevorstehenden Eingriff.
 Im Röntgen-Thorax zeigten sich keine Hinweise auf pulmonalvenöse Stauung. In der Aufnahme der Nasennebenhöhlen ergaben sich keine Hinweise auf eine floride Sinusitis. Die Abdomensonographie war unauffällig. In der Lungenfunktionsdiagnostik zeigten sich keine Auffälligkeiten. Die zahnärztliche Untersuchung war soweit unauffällig.
 
-Wir konnten den Patienten am XX.08.2018 in stabilem Allgemeinzustand in die Schön Klinik Vogtareuth verlegen.
+Wir konnten den Patienten am XX.XX.XXXX in stabilem Allgemeinzustand in die Schön Klinik Vogtareuth verlegen.
 
 Therapieempfehlung:
 
 Procedere:
-- Aufnahmetermin in der Schön Klinik Vogtareuth am XX.08.2018 zur Klappenoperation am XX.08.2018
+- Aufnahmetermin in der Weiterbehandlenden Klinik am XX.XX.XXXX zur Klappenoperation am XX.XX.XXXX
 
 Bypass-OP
 
@@ -529,24 +529,24 @@ Körperlicher Untersuchungsbefund:
 Befunde:
 EKG bei Aufnahme:
 
-Koronarangiographie vom XX.08.2018:
+Koronarangiographie vom XX.XX.XXXX:
 
 Therapie & Verlauf:
-Die stationäre Aufnahme des Patienten erfolgte am xx.08.2018 zur elektiv geplanten Koronarangiographie. Hierbei zeigte sich eine schwere koronare 2-/3-Gefäßerkrankung mit oben genanntem Befund und Indikation zur operativen Bypass-Versorgung.
+Die stationäre Aufnahme des Patienten erfolgte am XX.XX.XXXX zur elektiv geplanten Koronarangiographie. Hierbei zeigte sich eine schwere koronare 2-/3-Gefäßerkrankung mit oben genanntem Befund und Indikation zur operativen Bypass-Versorgung.
 Echokardiographisch fand sich eine XXgradig eingeschränkte LVEF bei
 
-Die aktuelle Situation, das Krankheitsbild und das weitere Procedere wurden mit dem Patienten ausführlich besprochen. Wir vereinbarten einen Aufnahmetermin in der Schön Klinik Vogtareuth am XX.08.2018 zur Bypass-OP am XX.08.2018.
+Die aktuelle Situation, das Krankheitsbild und das weitere Procedere wurden mit dem Patienten ausführlich besprochen. Wir vereinbarten einen Aufnahmetermin in der Schön Klinik Vogtareuth am XX.XX.XXXX zur Bypass-OP am XX.XX.XXXX.
 In den präoperativen Vorbereitungsuntersuchungen ergaben sich keine Kontraindikationen für den bevorstehenden Eingriff.
 Im Röntgen-Thorax zeigten sich keine Hinweise auf pulmonalvenöse Stauung. Die Abdomensonographie war unauffällig. In der Lungenfunktionsdiagnostik zeigten sich keine Auffälligkeiten.
 
 Die linke/rechte Leisten-/Radialisregion war nach Punktion im Rahmen der Koronarangiographie zuletzt palpatorisch und auskultatorisch unauffällig und reizlos bei geringem lokalem Hämatom.
 
-Wir konnten den Patienten am XX.08.2018 in stabilem Allgemeinzustand in die Schön Klinik Vogtareuth verlegen.
+Wir konnten den Patienten am XX.XX.XXXX in stabilem Allgemeinzustand in die Schön Klinik Vogtareuth verlegen.
 
 Therapieempfehlung:
 
 Procedere:
-- Aufnahmetermin in der Schön Klinik Vogtareuth am XX.08.2018 zur Bypassoperation am XX.08.2018
+- Aufnahmetermin in der Schön Klinik Vogtareuth am XX.XX.XXXX zur Bypassoperation am XX.XX.XXXX
 
 CRT-D
 
@@ -566,21 +566,21 @@ Befunde:
 EKG bei Aufnahme:
 
 	Therapie und Verlauf:
-	Die stationäre Aufnahme des Patienten erfolgte am XX.08.2018 zur elektiven CRT-D-Implantation bei hochgradig eingeschränkter linksventrikulärer Pumpfunktion und Asynchronie bei einem breiten Linksschenkelblock.
-	Am XX.08.2018 erfolgte die komplikationslose Implantation des CRT-D-Systems.
+	Die stationäre Aufnahme des Patienten erfolgte am XX.XX.XXXX zur elektiven CRT-D-Implantation bei hochgradig eingeschränkter linksventrikulärer Pumpfunktion und Asynchronie bei einem breiten Linksschenkelblock.
+	Am XX.XX.XXXX erfolgte die komplikationslose Implantation des CRT-D-Systems.
 	Radiomorphologisch ergab sich im Röntgen-Thorax kein Anhalt für einen Pneumothorax sowie eine korrekte Sondenlage.
-	In der Schrittmacher-/Defibrillatorkontrolle vom XX.08.2018 zeige sich eine regelrechte Funktion des Aggregats.
-	Der Patient hat am xx.xx.2018 um XX Uhr einen Termin zur ambulanten Vorstellung zur Defibrillator-Kontrolle mit hausärztlicher Überweisung in unserer Defibrillatorambulanz (RoMed Klinikum Rosenheim, Medizinische Klinik I, Kardiologie, Tel. Chefarztsekretariat 08031/365 3101).
+	In der Schrittmacher-/Defibrillatorkontrolle vom XX.XX.XXXX zeige sich eine regelrechte Funktion des Aggregats.
+	Der Patient hat am xx.xx.XXXX um XX Uhr einen Termin zur ambulanten Vorstellung zur Defibrillator-Kontrolle mit hausärztlicher Überweisung in unserer Defibrillatorambulanz
 	Das Nahtmaterial sollte bei regelmäßiger Wundkontrolle und Verbandswechsel in ca. 8-10 Tagen entfernt werden.
 
-	Am XX.08.2018 entlassen wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung und stehen für Rückfragen gerne zur Verfügung.
+	Am XX.XX.XXXX entlassen wir den Patienten in stabilem und beschwerdefreiem Zustand wieder in Ihre geschätzte ambulante ärztliche Weiterbehandlung und stehen für Rückfragen gerne zur Verfügung.
 
 Therapieempfehlung:
 
 		Procedere:
 - 		Nach regelmäßigen Wundkontrollen Entfernung des Nahtmaterials in 8-10 Tagen.
-- 		Beginn der Remarcumarisierung ab dem XX.08.2018
-- 		Schrittmacher-/Defibrillatorkontrolle am xx.xx.2018 in unserer Schrittmacherambulanz mit hausärztlicher Überweisung (RoMed Klinikum Rosenheim, Medizinische Klinik I, Kardiologie, Tel. Chefarztsekretariat 08031/365 3101)
+- 		Beginn der Remarcumarisierung ab dem XX.XX.XXXX
+- 		Schrittmacher-/Defibrillatorkontrolle am xx.xx.XXXX in unserer Schrittmacherambulanz mit hausärztlicher Überweisung
 
 Cardioversion (Tagesklinik ambulant)
 
@@ -601,7 +601,7 @@ EKG bei Aufnahme:
 
 TEE
 
-EKG vom XX.08.2018:
+EKG vom XX.XX.XXXX:
 
 Therapie und Verlauf:
 Nach Ausschluss intracavitärer Thromben mittels TEE konnte eine erfolgreiche elektrische Kardioversion mit 1x XX J in einen Sinusrhythmus durchgeführt werden.
@@ -639,9 +639,6 @@ TTE vom ..
 	Postinterventionell konnte ein Perikarderguss ausgeschlossen werden. Die Punktionsstelle in der rechten/linken Leiste zeigte sich blande bei geringem lokalem Hämatom.
 	Wir entlassen den Patienten am ..  in Ihre geschätzte Haus- und fachärztliche Weiterbehandlung.
 
-Dr. med. C. Seidel
-Internist - Kardiologie
-Oberarzt
 
 Procedere:
 
@@ -649,15 +646,15 @@ Procedere:
 
 - Optimale Kontrolle und Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel LDL < 70 mg/dl
 
-- Bei erneuten/persistierenden Beschwerden Wiedervorstellung zur Kontrollkoronarangiographie (RoMed Klinikum Rosenheim, Medizinische Klinik I, Kardiologie, Tel. Chefarztsekreteriat 08031/365 3101).
+- Bei erneuten/persistierenden Beschwerden Wiedervorstellung zur Kontrollkoronarangiographie
 
-- Termin für Herzkatheteruntersuchung am xx.08.2018 um 7.30 Uhr auf Station XX (Bitte mit Überweisungsschein und aktuellem Labor)
+- Termin für Herzkatheteruntersuchung am XX.XX.XXXX um 7.30 Uhr auf Station XX (Bitte mit Überweisungsschein und aktuellem Labor)
 
 - Überlappende Heparin-Therapie für 2 Tage bei erreichtem Ziel-INR von 2,0 bis 3,0 unter Marcumar-Therapie
 
 - Unter Amiodarontherapie bitte regelmäßige EKG-Kontrollen (QTc <500 ms), Laborkontrollen (Schilddrüsenhormone, Leberwerte),  sowie jährliche augenärztliche Kontrollen und jährliche Lungenfunktionsprüfungen
 
-- 	Prednisolon 25mg	z. B. Decortin H 		1-0-0 bis einschließlich XX.08.2018, dann wöchentliche Dosisreduktion zunächst auf 12,5mg, dann 7,5mg, dann in 2,5mg-Schritten ausschleichen und absetzen.
+- 	Prednisolon 25mg	z. B. Decortin H 		1-0-0 bis einschließlich XX.XX.XXXX, dann wöchentliche Dosisreduktion zunächst auf 12,5mg, dann 7,5mg, dann in 2,5mg-Schritten ausschleichen und absetzen.
 
 	Sonographische Untersuchungen
 
@@ -705,10 +702,10 @@ Die stationäre Aufnahme des Patienten erfolgte bei erneuter Infektexacerbation 
 Hierunter waren die Entzündungsparameter gut rückläufig, der Zustand des Patienten besserte sich langsam. In entnommenen Blutkulturen konnte kein Keimwachstum festgestellt werden. Die Kortisontherapie wurde zuletzt auf eine Tagesdosis von 20mg reduziert, wir bitten um weitere Reduktion bis 10mg im Verlauf.
 Lungenfunktionell zeigte sich eine im Vergleich zu den Voruntersuchungen leicht gebesserte Vitalkapazität sowie FEV1. Radiologisch zeigten sich allenfalls Zeichen einer geringen pulmonalvenösen Stauung, das Körpergewicht im Vergleich zum Voraufenthalt jedoch konstant. Die Torasemiddosis wurde im Verlauf reduziert, wir bitten hierunter um regelmäßige Gewichtskontrollen.
 Mittels physiotherapeutischer Beübung gelang eine zunehmend gebesserte Mobilisierung des Patienten am Rollator.
-Wir konnten den Patienten am 14.09.2018 im deutlich gebesserten Allgemeinzustand nach Hause entlassen. Eine Fortsetzung der Anschlussheilbehandlung in Schönau ist ab 17.09.2018 vorgesehen.
+Wir konnten den Patienten am 14.09.XXXX im deutlich gebesserten Allgemeinzustand nach Hause entlassen. Eine Fortsetzung der Anschlussheilbehandlung in Schönau ist ab 17.09.XXXX vorgesehen.
 
 	Schwere septische Pneumonie im rechten Unterlappen, community-aquired
-	Z.n. Pneumonie im Herbst 2018
+	Z.n. Pneumonie im Herbst XXXX
 	Akutes Nierenversagen dd chronische Niereninsuffizienz, Verlaufskontrolle empfohlen
 	Allergien: Penicillin
 
@@ -736,12 +733,12 @@ Wir konnten den Patienten am 14.09.2018 im deutlich gebesserten Allgemeinzustand
 	Technische Befunde:
 	Pathologische Laborparameter bei Aufnahme:
 	Tumormarker: Cyfra 21-1 12.0 ng/ml (< 3.30), CEA 41.6 ng/ml (< 4.5), NSE 33.4 ng/ml (< 16.3).
-	Spirometrie und Bodyplethysmographie vom 25.06.2019:
-	Messung von Atemantrieb und Atemmuskulaturstärke vom 25.06.2019:
-	Abdomensonographie vom 25.06.2019:
-	Pleurapunktion vom 26.06.2019:
-	Rö-Thorax vom 26.6.19
-	MRT Kopf mit KM vom 28.06.2019
+	Spirometrie und Bodyplethysmographie vom XX.XX.XXXX:
+	Messung von Atemantrieb und Atemmuskulaturstärke vom XX.XX.XXXX:
+	Abdomensonographie vom XX.XX.XXXX:
+	Pleurapunktion vom XX.XX.XXXX:
+	Rö-Thorax vom XX.XX.XXXX
+	MRT Kopf mit KM vom XX.XX.XXXX
 
 	Therapie und Verlauf:
 	Elektive Aufnahme zur Komplettierung des Stagings bei Erstdiagnose eines gering differenzierten Adenokarzinoms des rechten Lungenoberlappenostiums. Bei noch nicht erfolgter Molekulardiagnostik wurde diese in der Pathologie Starnberg nachgefordert.
@@ -749,9 +746,9 @@ Wir konnten den Patienten am 14.09.2018 im deutlich gebesserten Allgemeinzustand
 	Bronchoskopisch zeigte sich ein Verschluss des rechten Oberlappens durch Tumorgewebe. Histologisch zeigten sich in den Proben Zellen vereinbar mit einem Adenokarzinom. Die weitere immunhistochemische Untersuchung folgt.
 
 	Zusammenfassung und Verlauf:
-Mit Bedauern müssen wir Ihnen vom Tode unserer gemeinsamen Patientin, Fr. Elisabeth May berichten.
-	Frau May stellte sich am 13.11.2018 bei zunehmender kardialer Dekompensation und starken Beinschmerzen in der zentralen Notaufnahme vor. Klinisch und radiologisch imponierten Zeichen einer dekompensierten Herzinsuffizienz mit ausgedehnten Pleuraergüssen bds. und Anasarka. Echokardiographisch zeigte sich die linksventrikuläre Pumpfunktion mittel bis höhergradig eingeschränkt. Die vorbekannte Ventrikelperforation stellte sich aktuell mit großem Pendelvolumen zwischen Ventrikel und einer großen Perikardzyste (ca. 9x6x6 cm messend) dar. Zudem kam im Rahmen der Dekompensation eine mittel bis hochgradige Trikuspidalklappeninsuffizienz und pulmonale Hypertonie zur Darstellung.
+Mit Bedauern müssen wir Ihnen vom Tode unserer gemeinsamen Patientin, Fr. Vorname Nachname berichten.
+	Frau Nachname stellte sich am XX.XX.XXXX bei zunehmender kardialer Dekompensation und starken Beinschmerzen in der zentralen Notaufnahme vor. Klinisch und radiologisch imponierten Zeichen einer dekompensierten Herzinsuffizienz mit ausgedehnten Pleuraergüssen bds. und Anasarka. Echokardiographisch zeigte sich die linksventrikuläre Pumpfunktion mittel bis höhergradig eingeschränkt. Die vorbekannte Ventrikelperforation stellte sich aktuell mit großem Pendelvolumen zwischen Ventrikel und einer großen Perikardzyste (ca. 9x6x6 cm messend) dar. Zudem kam im Rahmen der Dekompensation eine mittel bis hochgradige Trikuspidalklappeninsuffizienz und pulmonale Hypertonie zur Darstellung.
 	Bei einem septischen Infektbild unklarer Genese begannen wir eine i.v. Therapie mit Ampicillin/Sulbactam. Bei weiterhin steigenden Entzündungsparameter und klinischen Zeichen der Sepsis erfolgte die Eskalation auf Piperacillin/Tazobactam. Als Infektfokus sind mehrere großflächige, zum Teil nekrotische, zum Teil feuchte Wunden am Fußrücken bds. auszumachen.
-Der Allgemeinzustand von Fr. May verschlechterte sich während des stationären Aufenthaltes zunehmends.
-Die Situation wurde mit den Angehörigen ausführlich  besprochen. Gemeinsam wurden Therapielimitationen festgelegt und der Beginn palliativer Maßnahmen eingeleitet. Frau May verstarb hierunter friedlich am 23.11.18. Wir bedauern diesen Verlauf.
+Der Allgemeinzustand von Fr. Nachname verschlechterte sich während des stationären Aufenthaltes zunehmends.
+Die Situation wurde mit den Angehörigen ausführlich  besprochen. Gemeinsam wurden Therapielimitationen festgelegt und der Beginn palliativer Maßnahmen eingeleitet. Frau Nachname verstarb hierunter friedlich am XX.XX.XXXX Wir bedauern diesen Verlauf.
 ```
