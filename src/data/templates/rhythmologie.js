@@ -17,7 +17,7 @@ const PUNKTIONSSATZ_FEMORAL = 'Die beidseits punktierten Vv. Femorales sind am E
 
 const FELD_CHA2DS2VASC = {
   key: 'cha2ds2vasc',
-  label: 'CHA₂DS₂-VASc-Score',
+  label: 'CHA₂DS₂-VA-Score',
   type: 'number',
   required: true,
   min: 0,
