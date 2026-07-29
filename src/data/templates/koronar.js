@@ -492,7 +492,7 @@ Echokardiographisch zeigte sich {{echo_befund}}
 In einem LZ-RR fanden sich normotensive Werte mit adäquater Nachtabsenkung (im Sinne eines {{lz_rr_dipper}}).
 {{/if}}
 Aufgrund der Stentimplantation empfehlen wir eine duale Plättchenhemmung mit ASS und {{p2y12}} für {{dapt_monate}} Monate, anschließend eine lebenslange Gabe von ASS.
-Wir empfehlen eine kardiologische Anbindung mit regelmäßigen echokardiographischen Verlaufsbeurteilungen. Weiters bitten wir um eine optimale Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel-LDL < 70 mg/dl.
+Wir empfehlen eine kardiologische Anbindung mit regelmäßigen echokardiographischen Verlaufsbeurteilungen. Weiters bitten wir um eine optimale Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel-LDL < 55 mg/dl.
 {{#if ahb_beantragt}}
 Auf Wunsch {{patient_gen}} beantragten wir über unseren Sozialdienst eine kardiologische AHB. Über Zeit und Ort wird {{patient_nom}} postalisch informiert.
 {{/if}}
@@ -502,7 +502,7 @@ ${ENTLASSSATZ_T}`,
 - Eine AHB wurde beantragt. Über Zeit und Ort wird {{patient_nom}} postalisch informiert.
 {{/if}}
 - duale Plättchenhemmung mit ASS und {{p2y12}} für {{dapt_monate}} Monate, anschließend eine lebenslange Gabe von ASS
-- optimale Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel-LDL < 70 mg/dl
+- optimale Einstellung der kardiovaskulären Risikofaktoren, u.a. mit einem Ziel-LDL < 55 mg/dl
 - kardiologische Anbindung mit regelmäßigen echokardiographischen Verlaufsbeurteilungen
 - Ausreizen der Herzinsuffizienzmedikation nach Patientenverträglichkeit`,
   }),
